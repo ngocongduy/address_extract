@@ -1,0 +1,454 @@
+{
+  "error": "",
+  "response": {
+    "id": 32,
+    "name": "FE_Credit_Province_Codes",
+    "columns": [
+      "Province",
+      "Code"
+    ],
+    "values": [
+      {
+        "id": 39998,
+        "values": [
+          "Tỉnh An Giang",
+          "75"
+        ]
+      },
+      {
+        "id": 39997,
+        "values": [
+          "Tỉnh Bắc Giang",
+          "82"
+        ]
+      },
+      {
+        "id": 39996,
+        "values": [
+          "Tỉnh Bắc Kạn",
+          "83"
+        ]
+      },
+      {
+        "id": 39995,
+        "values": [
+          "Tỉnh Bạc Liêu",
+          "81"
+        ]
+      },
+      {
+        "id": 39994,
+        "values": [
+          "Tỉnh Bắc Ninh",
+          "84"
+        ]
+      },
+      {
+        "id": 39993,
+        "values": [
+          "Tỉnh Bến Tre",
+          "85"
+        ]
+      },
+      {
+        "id": 39992,
+        "values": [
+          "Tỉnh Bà Rịa - Vũng Tàu",
+          "76"
+        ]
+      },
+      {
+        "id": 39991,
+        "values": [
+          "Tỉnh Bình Dương",
+          "77"
+        ]
+      },
+      {
+        "id": 39990,
+        "values": [
+          "Tỉnh Bình Phước",
+          "78"
+        ]
+      },
+      {
+        "id": 39989,
+        "values": [
+          "Tỉnh Bình Thuận",
+          "79"
+        ]
+      },
+      {
+        "id": 39988,
+        "values": [
+          "Tỉnh Bình Định",
+          "80"
+        ]
+      },
+      {
+        "id": 39987,
+        "values": [
+          "Tỉnh Cao Bằng",
+          "86"
+        ]
+      },
+      {
+        "id": 39986,
+        "values": [
+          "Tỉnh Cà Mau",
+          "87"
+        ]
+      },
+      {
+        "id": 39985,
+        "values": [
+          "Tỉnh Gia Lai",
+          "89"
+        ]
+      },
+      {
+        "id": 39984,
+        "values": [
+          "Tỉnh Hải Dương",
+          "96"
+        ]
+      },
+      {
+        "id": 39983,
+        "values": [
+          "Tỉnh Hậu Giang",
+          "98"
+        ]
+      },
+      {
+        "id": 39982,
+        "values": [
+          "Tỉnh Hòa Bình",
+          "90"
+        ]
+      },
+      {
+        "id": 39981,
+        "values": [
+          "Tỉnh Hưng Yên",
+          "95"
+        ]
+      },
+      {
+        "id": 39980,
+        "values": [
+          "Tỉnh Hà Giang",
+          "91"
+        ]
+      },
+      {
+        "id": 39979,
+        "values": [
+          "Tỉnh Hà Nam",
+          "92"
+        ]
+      },
+      {
+        "id": 39978,
+        "values": [
+          "Tỉnh Hà Tĩnh",
+          "94"
+        ]
+      },
+      {
+        "id": 39977,
+        "values": [
+          "Tỉnh Khánh Hòa",
+          "99"
+        ]
+      },
+      {
+        "id": 39976,
+        "values": [
+          "Tỉnh Kiên Giang",
+          "100"
+        ]
+      },
+      {
+        "id": 39975,
+        "values": [
+          "Tỉnh Kon Tum",
+          "101"
+        ]
+      },
+      {
+        "id": 39974,
+        "values": [
+          "Tỉnh Lạng Sơn",
+          "106"
+        ]
+      },
+      {
+        "id": 39973,
+        "values": [
+          "Tỉnh Lai Châu",
+          "102"
+        ]
+      },
+      {
+        "id": 39972,
+        "values": [
+          "Tỉnh Long An",
+          "103"
+        ]
+      },
+      {
+        "id": 39971,
+        "values": [
+          "Tỉnh Lào Cai",
+          "104"
+        ]
+      },
+      {
+        "id": 39970,
+        "values": [
+          "Tỉnh Lâm Đồng",
+          "105"
+        ]
+      },
+      {
+        "id": 39969,
+        "values": [
+          "Tỉnh Nam Định",
+          "107"
+        ]
+      },
+      {
+        "id": 39968,
+        "values": [
+          "Tỉnh Nghệ An",
+          "108"
+        ]
+      },
+      {
+        "id": 39967,
+        "values": [
+          "Tỉnh Ninh Bình",
+          "109"
+        ]
+      },
+      {
+        "id": 39966,
+        "values": [
+          "Tỉnh Ninh Thuận",
+          "110"
+        ]
+      },
+      {
+        "id": 39965,
+        "values": [
+          "Tỉnh Phú Thọ",
+          "111"
+        ]
+      },
+      {
+        "id": 39964,
+        "values": [
+          "Tỉnh Phú Yên",
+          "112"
+        ]
+      },
+      {
+        "id": 39963,
+        "values": [
+          "Tỉnh Quảng Bình",
+          "113"
+        ]
+      },
+      {
+        "id": 39962,
+        "values": [
+          "Tỉnh Quảng Nam",
+          "114"
+        ]
+      },
+      {
+        "id": 39961,
+        "values": [
+          "Tỉnh Quảng Ngãi",
+          "115"
+        ]
+      },
+      {
+        "id": 39960,
+        "values": [
+          "Tỉnh Quảng Ninh",
+          "116"
+        ]
+      },
+      {
+        "id": 39959,
+        "values": [
+          "Tỉnh Quảng Trị",
+          "117"
+        ]
+      },
+      {
+        "id": 39958,
+        "values": [
+          "Tỉnh Sơn La",
+          "119"
+        ]
+      },
+      {
+        "id": 39957,
+        "values": [
+          "Tỉnh Sóc Trăng",
+          "118"
+        ]
+      },
+      {
+        "id": 39956,
+        "values": [
+          "Tỉnh Thừa Thiên - Huế",
+          "123"
+        ]
+      },
+      {
+        "id": 39955,
+        "values": [
+          "Tỉnh Thanh Hóa",
+          "120"
+        ]
+      },
+      {
+        "id": 39954,
+        "values": [
+          "Tỉnh Thái Bình",
+          "121"
+        ]
+      },
+      {
+        "id": 39953,
+        "values": [
+          "Tỉnh Thái Nguyên",
+          "122"
+        ]
+      },
+      {
+        "id": 39952,
+        "values": [
+          "Tỉnh Tiền Giang",
+          "124"
+        ]
+      },
+      {
+        "id": 39951,
+        "values": [
+          "Tỉnh Trà Vinh",
+          "126"
+        ]
+      },
+      {
+        "id": 39950,
+        "values": [
+          "Tỉnh Tuyên Quang",
+          "127"
+        ]
+      },
+      {
+        "id": 39949,
+        "values": [
+          "Tỉnh Tây Ninh",
+          "128"
+        ]
+      },
+      {
+        "id": 39948,
+        "values": [
+          "Tỉnh Vĩnh Long",
+          "129"
+        ]
+      },
+      {
+        "id": 39947,
+        "values": [
+          "Tỉnh Vĩnh Phúc",
+          "130"
+        ]
+      },
+      {
+        "id": 39946,
+        "values": [
+          "Tỉnh Yên Bái",
+          "131"
+        ]
+      },
+      {
+        "id": 39945,
+        "values": [
+          "Tỉnh Đồng Nai",
+          "2"
+        ]
+      },
+      {
+        "id": 39944,
+        "values": [
+          "Tỉnh Đồng Tháp",
+          "7"
+        ]
+      },
+      {
+        "id": 39943,
+        "values": [
+          "Tỉnh Đắk Lắk",
+          "134"
+        ]
+      },
+      {
+        "id": 39942,
+        "values": [
+          "Tỉnh Đắk Nông",
+          "1"
+        ]
+      },
+      {
+        "id": 39941,
+        "values": [
+          "Tỉnh Điện Biên",
+          "132"
+        ]
+      },
+      {
+        "id": 39940,
+        "values": [
+          "Thành phố Cần Thơ",
+          "88"
+        ]
+      },
+      {
+        "id": 39939,
+        "values": [
+          "Thành phố Hải Phòng",
+          "97"
+        ]
+      },
+      {
+        "id": 39938,
+        "values": [
+          "Thành phố Hà Nội",
+          "93"
+        ]
+      },
+      {
+        "id": 39937,
+        "values": [
+          "Thành phố Đà Nẵng",
+          "133"
+        ]
+      },
+      {
+        "id": 39936,
+        "values": [
+          "TP Hồ Chí Minh",
+          "125"
+        ]
+      }
+    ]
+  }
+}

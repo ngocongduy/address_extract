@@ -48,3 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+# pytest cache
+.pytest_cache
+
+# intellij
+.idea
+

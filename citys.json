@@ -1,0 +1,4272 @@
+{
+  "error": "",
+  "response": {
+    "id": 23,
+    "name": "FE_Credit_City_District",
+    "columns": [
+      "City"
+    ],
+    "values": [
+      {
+        "id": 9541,
+        "values": [
+          "Tủa Chùa"
+        ]
+      },
+      {
+        "id": 9460,
+        "values": [
+          "Hải Châu"
+        ]
+      },
+      {
+        "id": 9459,
+        "values": [
+          "Liên Chiểu"
+        ]
+      },
+      {
+        "id": 9458,
+        "values": [
+          "Hoàng Sa"
+        ]
+      },
+      {
+        "id": 9457,
+        "values": [
+          "Thanh Khê"
+        ]
+      },
+      {
+        "id": 9456,
+        "values": [
+          "Cẩm Lệ"
+        ]
+      },
+      {
+        "id": 9455,
+        "values": [
+          "Ngũ Hành Sơn"
+        ]
+      },
+      {
+        "id": 9454,
+        "values": [
+          "Hòa Vang"
+        ]
+      },
+      {
+        "id": 9453,
+        "values": [
+          "Sơn Trà"
+        ]
+      },
+      {
+        "id": 9452,
+        "values": [
+          "Hoàn Kiếm"
+        ]
+      },
+      {
+        "id": 9451,
+        "values": [
+          "Quốc Oai"
+        ]
+      },
+      {
+        "id": 9450,
+        "values": [
+          "Ứng Hòa"
+        ]
+      },
+      {
+        "id": 9449,
+        "values": [
+          "Đống Đa"
+        ]
+      },
+      {
+        "id": 9448,
+        "values": [
+          "Chương Mỹ"
+        ]
+      },
+      {
+        "id": 9447,
+        "values": [
+          "Ba Đình"
+        ]
+      },
+      {
+        "id": 9446,
+        "values": [
+          "Đông Anh"
+        ]
+      },
+      {
+        "id": 9445,
+        "values": [
+          "Thạch Thất"
+        ]
+      },
+      {
+        "id": 9444,
+        "values": [
+          "Thanh Oai"
+        ]
+      },
+      {
+        "id": 9443,
+        "values": [
+          "Đan Phượng"
+        ]
+      },
+      {
+        "id": 9442,
+        "values": [
+          "Sóc Sơn"
+        ]
+      },
+      {
+        "id": 9441,
+        "values": [
+          "Thanh Xuân"
+        ]
+      },
+      {
+        "id": 9440,
+        "values": [
+          "Thanh Trì"
+        ]
+      },
+      {
+        "id": 9439,
+        "values": [
+          "Hoàng Mai"
+        ]
+      },
+      {
+        "id": 9438,
+        "values": [
+          "Mê Linh"
+        ]
+      },
+      {
+        "id": 9437,
+        "values": [
+          "Hoài Đức"
+        ]
+      },
+      {
+        "id": 9436,
+        "values": [
+          "Quận 3"
+        ]
+      },
+      {
+        "id": 9435,
+        "values": [
+          "Phú Nhuận"
+        ]
+      },
+      {
+        "id": 9434,
+        "values": [
+          "Quận 12"
+        ]
+      },
+      {
+        "id": 9433,
+        "values": [
+          "Thủ Đức"
+        ]
+      },
+      {
+        "id": 9432,
+        "values": [
+          "Củ Chi"
+        ]
+      },
+      {
+        "id": 9431,
+        "values": [
+          "Quận 6"
+        ]
+      },
+      {
+        "id": 9430,
+        "values": [
+          "Bình Thạnh"
+        ]
+      },
+      {
+        "id": 9429,
+        "values": [
+          "Quận 9"
+        ]
+      },
+      {
+        "id": 9428,
+        "values": [
+          "Gò Vấp"
+        ]
+      },
+      {
+        "id": 9427,
+        "values": [
+          "Quận 5"
+        ]
+      },
+      {
+        "id": 9426,
+        "values": [
+          "Quận 10"
+        ]
+      },
+      {
+        "id": 9425,
+        "values": [
+          "Quận 8"
+        ]
+      },
+      {
+        "id": 9424,
+        "values": [
+          "Hòa Thành"
+        ]
+      },
+      {
+        "id": 9423,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9422,
+        "values": [
+          "Huế"
+        ]
+      },
+      {
+        "id": 9421,
+        "values": [
+          "Tân Biên"
+        ]
+      },
+      {
+        "id": 9420,
+        "values": [
+          "Trảng Bàng"
+        ]
+      },
+      {
+        "id": 9419,
+        "values": [
+          "Tân Châu"
+        ]
+      },
+      {
+        "id": 9418,
+        "values": [
+          "Tây Ninh"
+        ]
+      },
+      {
+        "id": 9417,
+        "values": [
+          "Bến Cầu"
+        ]
+      },
+      {
+        "id": 9416,
+        "values": [
+          "Dương Minh Châu"
+        ]
+      },
+      {
+        "id": 9415,
+        "values": [
+          "Nà Hang"
+        ]
+      },
+      {
+        "id": 9414,
+        "values": [
+          "Chiêm Hóa"
+        ]
+      },
+      {
+        "id": 9413,
+        "values": [
+          "Sơn Dương"
+        ]
+      },
+      {
+        "id": 9412,
+        "values": [
+          "Hàm Yên"
+        ]
+      },
+      {
+        "id": 9411,
+        "values": [
+          "Yên Sơn"
+        ]
+      },
+      {
+        "id": 9410,
+        "values": [
+          "Tuyên Quang"
+        ]
+      },
+      {
+        "id": 9409,
+        "values": [
+          "Cầu Ngang"
+        ]
+      },
+      {
+        "id": 9408,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9407,
+        "values": [
+          "Trà Vinh"
+        ]
+      },
+      {
+        "id": 9406,
+        "values": [
+          "Tiểu Cần"
+        ]
+      },
+      {
+        "id": 9405,
+        "values": [
+          "Cầu Kè"
+        ]
+      },
+      {
+        "id": 9404,
+        "values": [
+          "Trà Cú"
+        ]
+      },
+      {
+        "id": 9403,
+        "values": [
+          "Càng Long"
+        ]
+      },
+      {
+        "id": 9402,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9401,
+        "values": [
+          "Tân Phú Đông"
+        ]
+      },
+      {
+        "id": 9400,
+        "values": [
+          "Gò Công"
+        ]
+      },
+      {
+        "id": 9399,
+        "values": [
+          "Mỹ Tho"
+        ]
+      },
+      {
+        "id": 9398,
+        "values": [
+          "Cai Lậy"
+        ]
+      },
+      {
+        "id": 9397,
+        "values": [
+          "Tân Phước"
+        ]
+      },
+      {
+        "id": 9396,
+        "values": [
+          "Chợ Gạo"
+        ]
+      },
+      {
+        "id": 9395,
+        "values": [
+          "Gò Công Tây"
+        ]
+      },
+      {
+        "id": 9394,
+        "values": [
+          "Gò Công Đông"
+        ]
+      },
+      {
+        "id": 9393,
+        "values": [
+          "Đại Từ"
+        ]
+      },
+      {
+        "id": 9392,
+        "values": [
+          "Sông Công"
+        ]
+      },
+      {
+        "id": 9391,
+        "values": [
+          "Đồng Hỷ"
+        ]
+      },
+      {
+        "id": 9390,
+        "values": [
+          "Phú Bình"
+        ]
+      },
+      {
+        "id": 9389,
+        "values": [
+          "Định Hóa"
+        ]
+      },
+      {
+        "id": 9388,
+        "values": [
+          "Phú Lương"
+        ]
+      },
+      {
+        "id": 9387,
+        "values": [
+          "Thái Nguyên"
+        ]
+      },
+      {
+        "id": 9386,
+        "values": [
+          "Phổ Yên"
+        ]
+      },
+      {
+        "id": 9385,
+        "values": [
+          "Thái Thụy"
+        ]
+      },
+      {
+        "id": 9384,
+        "values": [
+          "Vũ Thư"
+        ]
+      },
+      {
+        "id": 9383,
+        "values": [
+          "Quỳnh Phụ"
+        ]
+      },
+      {
+        "id": 9382,
+        "values": [
+          "Kiến Xương"
+        ]
+      },
+      {
+        "id": 9381,
+        "values": [
+          "Tiền Hải"
+        ]
+      },
+      {
+        "id": 9380,
+        "values": [
+          "Thái Bình"
+        ]
+      },
+      {
+        "id": 9379,
+        "values": [
+          "Hưng Hà"
+        ]
+      },
+      {
+        "id": 9378,
+        "values": [
+          "Triệu Sơn"
+        ]
+      },
+      {
+        "id": 9377,
+        "values": [
+          "Như Thanh"
+        ]
+      },
+      {
+        "id": 9376,
+        "values": [
+          "Vĩnh Lộc"
+        ]
+      },
+      {
+        "id": 9375,
+        "values": [
+          "Đông Sơn"
+        ]
+      },
+      {
+        "id": 9374,
+        "values": [
+          "Thanh Hóa"
+        ]
+      },
+      {
+        "id": 9373,
+        "values": [
+          "Cẩm Thủy"
+        ]
+      },
+      {
+        "id": 9372,
+        "values": [
+          "Thọ Xuân"
+        ]
+      },
+      {
+        "id": 9371,
+        "values": [
+          "Thạch Thành"
+        ]
+      },
+      {
+        "id": 9370,
+        "values": [
+          "Sầm Sơn"
+        ]
+      },
+      {
+        "id": 9369,
+        "values": [
+          "Yên Định"
+        ]
+      },
+      {
+        "id": 9368,
+        "values": [
+          "Thường Xuân"
+        ]
+      },
+      {
+        "id": 9367,
+        "values": [
+          "Hà Trung"
+        ]
+      },
+      {
+        "id": 9366,
+        "values": [
+          "Nga Sơn"
+        ]
+      },
+      {
+        "id": 9365,
+        "values": [
+          "Ngọc Lặc"
+        ]
+      },
+      {
+        "id": 9364,
+        "values": [
+          "Nông Cống"
+        ]
+      },
+      {
+        "id": 9363,
+        "values": [
+          "Bỉm Sơn"
+        ]
+      },
+      {
+        "id": 9362,
+        "values": [
+          "Như Xuân"
+        ]
+      },
+      {
+        "id": 9361,
+        "values": [
+          "Quan Sơn"
+        ]
+      },
+      {
+        "id": 9360,
+        "values": [
+          "Bá Thước"
+        ]
+      },
+      {
+        "id": 9359,
+        "values": [
+          "Hậu Lộc"
+        ]
+      },
+      {
+        "id": 9358,
+        "values": [
+          "Hoằng Hóa"
+        ]
+      },
+      {
+        "id": 9357,
+        "values": [
+          "Lang Chánh"
+        ]
+      },
+      {
+        "id": 9356,
+        "values": [
+          "Thiệu Hóa"
+        ]
+      },
+      {
+        "id": 9355,
+        "values": [
+          "Quan Hóa"
+        ]
+      },
+      {
+        "id": 9354,
+        "values": [
+          "Quảng Xương"
+        ]
+      },
+      {
+        "id": 9353,
+        "values": [
+          "Hương Thủy"
+        ]
+      },
+      {
+        "id": 9352,
+        "values": [
+          "Nam Đông"
+        ]
+      },
+      {
+        "id": 9351,
+        "values": [
+          "Phong Điền"
+        ]
+      },
+      {
+        "id": 9350,
+        "values": [
+          "Hương Trà"
+        ]
+      },
+      {
+        "id": 9349,
+        "values": [
+          "Phú Vang"
+        ]
+      },
+      {
+        "id": 9348,
+        "values": [
+          "A Lưới"
+        ]
+      },
+      {
+        "id": 9347,
+        "values": [
+          "Phú Lộc"
+        ]
+      },
+      {
+        "id": 9346,
+        "values": [
+          "Quảng Điền"
+        ]
+      },
+      {
+        "id": 9345,
+        "values": [
+          "Mỹ Tú"
+        ]
+      },
+      {
+        "id": 9344,
+        "values": [
+          "Thạnh Trị"
+        ]
+      },
+      {
+        "id": 9343,
+        "values": [
+          "Kế Sách"
+        ]
+      },
+      {
+        "id": 9342,
+        "values": [
+          "Tân Yên"
+        ]
+      },
+      {
+        "id": 9341,
+        "values": [
+          "Việt Yên"
+        ]
+      },
+      {
+        "id": 9340,
+        "values": [
+          "Hiệp Hòa"
+        ]
+      },
+      {
+        "id": 9339,
+        "values": [
+          "Bắc Giang"
+        ]
+      },
+      {
+        "id": 9338,
+        "values": [
+          "Lạng Giang"
+        ]
+      },
+      {
+        "id": 9337,
+        "values": [
+          "Lục Ngạn"
+        ]
+      },
+      {
+        "id": 9336,
+        "values": [
+          "Chợ Mới"
+        ]
+      },
+      {
+        "id": 9335,
+        "values": [
+          "Châu Đốc"
+        ]
+      },
+      {
+        "id": 9334,
+        "values": [
+          "Châu Phú"
+        ]
+      },
+      {
+        "id": 9333,
+        "values": [
+          "Sóc Trăng"
+        ]
+      },
+      {
+        "id": 9332,
+        "values": [
+          "Mỹ Xuyên"
+        ]
+      },
+      {
+        "id": 9331,
+        "values": [
+          "Ngã Năm"
+        ]
+      },
+      {
+        "id": 9330,
+        "values": [
+          "Long Phú"
+        ]
+      },
+      {
+        "id": 9329,
+        "values": [
+          "Trần Đề"
+        ]
+      },
+      {
+        "id": 9328,
+        "values": [
+          "Cù Lao Dung"
+        ]
+      },
+      {
+        "id": 9327,
+        "values": [
+          "Vĩnh Châu"
+        ]
+      },
+      {
+        "id": 9326,
+        "values": [
+          "Bắc Yên"
+        ]
+      },
+      {
+        "id": 9325,
+        "values": [
+          "Yên Châu"
+        ]
+      },
+      {
+        "id": 9324,
+        "values": [
+          "Sông Mã"
+        ]
+      },
+      {
+        "id": 9323,
+        "values": [
+          "Quỳnh Nhai"
+        ]
+      },
+      {
+        "id": 9322,
+        "values": [
+          "Mai Sơn"
+        ]
+      },
+      {
+        "id": 9321,
+        "values": [
+          "Mường La"
+        ]
+      },
+      {
+        "id": 9320,
+        "values": [
+          "Thuận Châu"
+        ]
+      },
+      {
+        "id": 9319,
+        "values": [
+          "Mộc Châu"
+        ]
+      },
+      {
+        "id": 9318,
+        "values": [
+          "Phù Yên"
+        ]
+      },
+      {
+        "id": 9317,
+        "values": [
+          "Sốp Cộp"
+        ]
+      },
+      {
+        "id": 9316,
+        "values": [
+          "Bác Ái"
+        ]
+      },
+      {
+        "id": 9315,
+        "values": [
+          "Sơn La"
+        ]
+      },
+      {
+        "id": 9314,
+        "values": [
+          "Cồn Cỏ"
+        ]
+      },
+      {
+        "id": 9313,
+        "values": [
+          "Quảng Trị"
+        ]
+      },
+      {
+        "id": 9312,
+        "values": [
+          "Vĩnh Linh"
+        ]
+      },
+      {
+        "id": 9311,
+        "values": [
+          "Đông Hà"
+        ]
+      },
+      {
+        "id": 9310,
+        "values": [
+          "Gio Linh"
+        ]
+      },
+      {
+        "id": 9309,
+        "values": [
+          "Hải Lăng"
+        ]
+      },
+      {
+        "id": 9308,
+        "values": [
+          "Triệu Phong"
+        ]
+      },
+      {
+        "id": 9307,
+        "values": [
+          "Cam Lộ"
+        ]
+      },
+      {
+        "id": 9306,
+        "values": [
+          "Đa Krông"
+        ]
+      },
+      {
+        "id": 9305,
+        "values": [
+          "Hướng Hóa"
+        ]
+      },
+      {
+        "id": 9304,
+        "values": [
+          "Đông Triều"
+        ]
+      },
+      {
+        "id": 9303,
+        "values": [
+          "Hoành Bồ"
+        ]
+      },
+      {
+        "id": 9302,
+        "values": [
+          "Hạ Long"
+        ]
+      },
+      {
+        "id": 9301,
+        "values": [
+          "Vân Đồn"
+        ]
+      },
+      {
+        "id": 9300,
+        "values": [
+          "Tiên Yên"
+        ]
+      },
+      {
+        "id": 9299,
+        "values": [
+          "Đầm Hà"
+        ]
+      },
+      {
+        "id": 9298,
+        "values": [
+          "Móng Cái"
+        ]
+      },
+      {
+        "id": 9297,
+        "values": [
+          "Cẩm Phả"
+        ]
+      },
+      {
+        "id": 9296,
+        "values": [
+          "Ba Chẽ"
+        ]
+      },
+      {
+        "id": 9295,
+        "values": [
+          "Uông Bí"
+        ]
+      },
+      {
+        "id": 9294,
+        "values": [
+          "Hải Hà"
+        ]
+      },
+      {
+        "id": 9293,
+        "values": [
+          "Cô Tô"
+        ]
+      },
+      {
+        "id": 9292,
+        "values": [
+          "Bình Liêu"
+        ]
+      },
+      {
+        "id": 9291,
+        "values": [
+          "Ba Tơ"
+        ]
+      },
+      {
+        "id": 9290,
+        "values": [
+          "Bình Sơn"
+        ]
+      },
+      {
+        "id": 9289,
+        "values": [
+          "Minh Long"
+        ]
+      },
+      {
+        "id": 9288,
+        "values": [
+          "Sơn Tây"
+        ]
+      },
+      {
+        "id": 9287,
+        "values": [
+          "Tây Hòa"
+        ]
+      },
+      {
+        "id": 9286,
+        "values": [
+          "Sông Hinh"
+        ]
+      },
+      {
+        "id": 9285,
+        "values": [
+          "Tuy An"
+        ]
+      },
+      {
+        "id": 9284,
+        "values": [
+          "Phú Hòa"
+        ]
+      },
+      {
+        "id": 9283,
+        "values": [
+          "Sông Cầu"
+        ]
+      },
+      {
+        "id": 9282,
+        "values": [
+          "Đồng Xuân"
+        ]
+      },
+      {
+        "id": 9281,
+        "values": [
+          "Tuy Hòa"
+        ]
+      },
+      {
+        "id": 9280,
+        "values": [
+          "Lâm Thao"
+        ]
+      },
+      {
+        "id": 9279,
+        "values": [
+          "Việt Trì"
+        ]
+      },
+      {
+        "id": 9278,
+        "values": [
+          "Thanh Ba"
+        ]
+      },
+      {
+        "id": 9277,
+        "values": [
+          "Tam Nông"
+        ]
+      },
+      {
+        "id": 9276,
+        "values": [
+          "Phù Ninh"
+        ]
+      },
+      {
+        "id": 9275,
+        "values": [
+          "Hạ Hòa"
+        ]
+      },
+      {
+        "id": 9274,
+        "values": [
+          "Đoan Hùng"
+        ]
+      },
+      {
+        "id": 9273,
+        "values": [
+          "Thanh Sơn"
+        ]
+      },
+      {
+        "id": 9272,
+        "values": [
+          "Tân Sơn"
+        ]
+      },
+      {
+        "id": 9271,
+        "values": [
+          "Yên Lập"
+        ]
+      },
+      {
+        "id": 9270,
+        "values": [
+          "Cẩm Khê"
+        ]
+      },
+      {
+        "id": 9269,
+        "values": [
+          "Thanh Thủy"
+        ]
+      },
+      {
+        "id": 9268,
+        "values": [
+          "Phú Thọ"
+        ]
+      },
+      {
+        "id": 9267,
+        "values": [
+          "Ninh Sơn"
+        ]
+      },
+      {
+        "id": 9266,
+        "values": [
+          "Ninh Hải"
+        ]
+      },
+      {
+        "id": 9265,
+        "values": [
+          "Ninh Phước"
+        ]
+      },
+      {
+        "id": 9264,
+        "values": [
+          "Phan Rang-Tháp Chàm"
+        ]
+      },
+      {
+        "id": 9263,
+        "values": [
+          "Thuận Bắc"
+        ]
+      },
+      {
+        "id": 9262,
+        "values": [
+          "Thuận Nam"
+        ]
+      },
+      {
+        "id": 9261,
+        "values": [
+          "Kim Sơn"
+        ]
+      },
+      {
+        "id": 9260,
+        "values": [
+          "Yên Khánh"
+        ]
+      },
+      {
+        "id": 9259,
+        "values": [
+          "Tam Điệp"
+        ]
+      },
+      {
+        "id": 9258,
+        "values": [
+          "Nho Quan"
+        ]
+      },
+      {
+        "id": 9257,
+        "values": [
+          "Hoa Lư"
+        ]
+      },
+      {
+        "id": 9256,
+        "values": [
+          "Yên Mô"
+        ]
+      },
+      {
+        "id": 9255,
+        "values": [
+          "Ninh Bình"
+        ]
+      },
+      {
+        "id": 9254,
+        "values": [
+          "Gia Viễn"
+        ]
+      },
+      {
+        "id": 9253,
+        "values": [
+          "Đức Huệ"
+        ]
+      },
+      {
+        "id": 9252,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9251,
+        "values": [
+          "Tân An"
+        ]
+      },
+      {
+        "id": 9250,
+        "values": [
+          "Vĩnh Hưng"
+        ]
+      },
+      {
+        "id": 9249,
+        "values": [
+          "Cần Giuộc"
+        ]
+      },
+      {
+        "id": 9248,
+        "values": [
+          "Tân Thạnh"
+        ]
+      },
+      {
+        "id": 9247,
+        "values": [
+          "Tân Hưng"
+        ]
+      },
+      {
+        "id": 9246,
+        "values": [
+          "Mộc Hóa"
+        ]
+      },
+      {
+        "id": 9245,
+        "values": [
+          "Đức Hòa"
+        ]
+      },
+      {
+        "id": 9229,
+        "values": [
+          "Bình Gia"
+        ]
+      },
+      {
+        "id": 9228,
+        "values": [
+          "Lạng Sơn"
+        ]
+      },
+      {
+        "id": 9227,
+        "values": [
+          "Đình Lập"
+        ]
+      },
+      {
+        "id": 9226,
+        "values": [
+          "Chi Lăng"
+        ]
+      },
+      {
+        "id": 9225,
+        "values": [
+          "Cao Lộc"
+        ]
+      },
+      {
+        "id": 9224,
+        "values": [
+          "Văn Quan"
+        ]
+      },
+      {
+        "id": 9223,
+        "values": [
+          "Hữu Lũng"
+        ]
+      },
+      {
+        "id": 9222,
+        "values": [
+          "Kon Plông"
+        ]
+      },
+      {
+        "id": 9221,
+        "values": [
+          "Đắk Hà"
+        ]
+      },
+      {
+        "id": 9220,
+        "values": [
+          "Ngọc Hồi"
+        ]
+      },
+      {
+        "id": 9219,
+        "values": [
+          "Đắk Glei"
+        ]
+      },
+      {
+        "id": 9218,
+        "values": [
+          "Kon Tum"
+        ]
+      },
+      {
+        "id": 9217,
+        "values": [
+          "Sa Thầy"
+        ]
+      },
+      {
+        "id": 9216,
+        "values": [
+          "Kon Rẫy"
+        ]
+      },
+      {
+        "id": 9215,
+        "values": [
+          "Đăk Tô"
+        ]
+      },
+      {
+        "id": 9214,
+        "values": [
+          "Tu Mơ Rông"
+        ]
+      },
+      {
+        "id": 9213,
+        "values": [
+          "Hòn Đất"
+        ]
+      },
+      {
+        "id": 9212,
+        "values": [
+          "U Minh Thượng"
+        ]
+      },
+      {
+        "id": 9211,
+        "values": [
+          "Gò Quao"
+        ]
+      },
+      {
+        "id": 9210,
+        "values": [
+          "Vĩnh Thuận"
+        ]
+      },
+      {
+        "id": 9209,
+        "values": [
+          "Phú Quốc"
+        ]
+      },
+      {
+        "id": 9208,
+        "values": [
+          "Rạch Giá"
+        ]
+      },
+      {
+        "id": 9207,
+        "values": [
+          "Kiên Lương"
+        ]
+      },
+      {
+        "id": 9206,
+        "values": [
+          "Giang Thành"
+        ]
+      },
+      {
+        "id": 9205,
+        "values": [
+          "Kiên Hải"
+        ]
+      },
+      {
+        "id": 9204,
+        "values": [
+          "Tân Hiệp"
+        ]
+      },
+      {
+        "id": 9203,
+        "values": [
+          "Nam Đàn"
+        ]
+      },
+      {
+        "id": 9202,
+        "values": [
+          "Quế Phong"
+        ]
+      },
+      {
+        "id": 9201,
+        "values": [
+          "Thái Hòa"
+        ]
+      },
+      {
+        "id": 9200,
+        "values": [
+          "Tương Dương"
+        ]
+      },
+      {
+        "id": 9199,
+        "values": [
+          "Yên Thành"
+        ]
+      },
+      {
+        "id": 9198,
+        "values": [
+          "Quỳ Châu"
+        ]
+      },
+      {
+        "id": 9197,
+        "values": [
+          "Kỳ Sơn"
+        ]
+      },
+      {
+        "id": 9196,
+        "values": [
+          "Anh Sơn"
+        ]
+      },
+      {
+        "id": 9195,
+        "values": [
+          "Quỳ Hợp"
+        ]
+      },
+      {
+        "id": 9194,
+        "values": [
+          "Nghĩa Đàn"
+        ]
+      },
+      {
+        "id": 9193,
+        "values": [
+          "Vinh"
+        ]
+      },
+      {
+        "id": 9192,
+        "values": [
+          "Quỳnh Lưu"
+        ]
+      },
+      {
+        "id": 9191,
+        "values": [
+          "Hưng Nguyên"
+        ]
+      },
+      {
+        "id": 9190,
+        "values": [
+          "Cửa Lò"
+        ]
+      },
+      {
+        "id": 9189,
+        "values": [
+          "Nghi Lộc"
+        ]
+      },
+      {
+        "id": 9188,
+        "values": [
+          "Tân Kỳ"
+        ]
+      },
+      {
+        "id": 9187,
+        "values": [
+          "Thanh Chương"
+        ]
+      },
+      {
+        "id": 9186,
+        "values": [
+          "Con Cuông"
+        ]
+      },
+      {
+        "id": 9185,
+        "values": [
+          "Diễn Châu"
+        ]
+      },
+      {
+        "id": 9184,
+        "values": [
+          "Đô Lương"
+        ]
+      },
+      {
+        "id": 9183,
+        "values": [
+          "Hải Hậu"
+        ]
+      },
+      {
+        "id": 9182,
+        "values": [
+          "Trực Ninh"
+        ]
+      },
+      {
+        "id": 9181,
+        "values": [
+          "Ý Yên"
+        ]
+      },
+      {
+        "id": 9180,
+        "values": [
+          "Nam Trực"
+        ]
+      },
+      {
+        "id": 9179,
+        "values": [
+          "Nam Định"
+        ]
+      },
+      {
+        "id": 9178,
+        "values": [
+          "Giao Thủy"
+        ]
+      },
+      {
+        "id": 9177,
+        "values": [
+          "Mỹ Lộc"
+        ]
+      },
+      {
+        "id": 9176,
+        "values": [
+          "Vụ Bản"
+        ]
+      },
+      {
+        "id": 9175,
+        "values": [
+          "Xuân Trường"
+        ]
+      },
+      {
+        "id": 9174,
+        "values": [
+          "Nghĩa Hưng"
+        ]
+      },
+      {
+        "id": 9173,
+        "values": [
+          "Đà Lạt"
+        ]
+      },
+      {
+        "id": 9172,
+        "values": [
+          "Bảo Lộc"
+        ]
+      },
+      {
+        "id": 9171,
+        "values": [
+          "Đức Trọng"
+        ]
+      },
+      {
+        "id": 9170,
+        "values": [
+          "Bảo Lâm"
+        ]
+      },
+      {
+        "id": 9169,
+        "values": [
+          "Đạ Huoai"
+        ]
+      },
+      {
+        "id": 9168,
+        "values": [
+          "Đơn Dương"
+        ]
+      },
+      {
+        "id": 9167,
+        "values": [
+          "Di Linh"
+        ]
+      },
+      {
+        "id": 9166,
+        "values": [
+          "Đạ Tẻh"
+        ]
+      },
+      {
+        "id": 9165,
+        "values": [
+          "Lâm Hà"
+        ]
+      },
+      {
+        "id": 9164,
+        "values": [
+          "Lạc Dương"
+        ]
+      },
+      {
+        "id": 9163,
+        "values": [
+          "Cát Tiên"
+        ]
+      },
+      {
+        "id": 9162,
+        "values": [
+          "Đam Rông"
+        ]
+      },
+      {
+        "id": 9161,
+        "values": [
+          "Bảo Yên"
+        ]
+      },
+      {
+        "id": 9160,
+        "values": [
+          "Lào Cai"
+        ]
+      },
+      {
+        "id": 9159,
+        "values": [
+          "Bảo Thắng"
+        ]
+      },
+      {
+        "id": 9158,
+        "values": [
+          "Si Ma Cai"
+        ]
+      },
+      {
+        "id": 9157,
+        "values": [
+          "Văn Bàn"
+        ]
+      },
+      {
+        "id": 9156,
+        "values": [
+          "Mường Khương"
+        ]
+      },
+      {
+        "id": 9155,
+        "values": [
+          "Bát Xát"
+        ]
+      },
+      {
+        "id": 9154,
+        "values": [
+          "Sa Pa"
+        ]
+      },
+      {
+        "id": 9153,
+        "values": [
+          "Bắc Hà"
+        ]
+      },
+      {
+        "id": 9152,
+        "values": [
+          "Cần Đước"
+        ]
+      },
+      {
+        "id": 9151,
+        "values": [
+          "Thủ Thừa"
+        ]
+      },
+      {
+        "id": 9150,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9149,
+        "values": [
+          "Sa Đéc"
+        ]
+      },
+      {
+        "id": 9148,
+        "values": [
+          "Lấp Vò"
+        ]
+      },
+      {
+        "id": 9147,
+        "values": [
+          "Hồng Ngự"
+        ]
+      },
+      {
+        "id": 9146,
+        "values": [
+          "Thanh Bình"
+        ]
+      },
+      {
+        "id": 9145,
+        "values": [
+          "Tam Nông"
+        ]
+      },
+      {
+        "id": 9144,
+        "values": [
+          "Tháp Mười"
+        ]
+      },
+      {
+        "id": 9143,
+        "values": [
+          "Cao Lãnh"
+        ]
+      },
+      {
+        "id": 9142,
+        "values": [
+          "Tân Hồng"
+        ]
+      },
+      {
+        "id": 9141,
+        "values": [
+          "Lai Vung"
+        ]
+      },
+      {
+        "id": 9140,
+        "values": [
+          "Nhơn Trạch"
+        ]
+      },
+      {
+        "id": 9139,
+        "values": [
+          "Long Thành"
+        ]
+      },
+      {
+        "id": 9138,
+        "values": [
+          "Biên Hòa"
+        ]
+      },
+      {
+        "id": 9137,
+        "values": [
+          "Thống Nhất"
+        ]
+      },
+      {
+        "id": 9136,
+        "values": [
+          "Cẩm Mỹ"
+        ]
+      },
+      {
+        "id": 9135,
+        "values": [
+          "Long Khánh"
+        ]
+      },
+      {
+        "id": 9134,
+        "values": [
+          "Vĩnh Cửu"
+        ]
+      },
+      {
+        "id": 9133,
+        "values": [
+          "Xuân Lộc"
+        ]
+      },
+      {
+        "id": 9132,
+        "values": [
+          "Trảng Bom"
+        ]
+      },
+      {
+        "id": 9131,
+        "values": [
+          "Định Quán"
+        ]
+      },
+      {
+        "id": 9130,
+        "values": [
+          "Mù Căng Chải"
+        ]
+      },
+      {
+        "id": 9129,
+        "values": [
+          "An Phú"
+        ]
+      },
+      {
+        "id": 9128,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9127,
+        "values": [
+          "Long Xuyên"
+        ]
+      },
+      {
+        "id": 9126,
+        "values": [
+          "Tân Châu"
+        ]
+      },
+      {
+        "id": 9125,
+        "values": [
+          "Phú Tân"
+        ]
+      },
+      {
+        "id": 9124,
+        "values": [
+          "Tri Tôn"
+        ]
+      },
+      {
+        "id": 9123,
+        "values": [
+          "Thoại Sơn"
+        ]
+      },
+      {
+        "id": 9122,
+        "values": [
+          "Hà Tiên"
+        ]
+      },
+      {
+        "id": 9121,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9120,
+        "values": [
+          "An Minh"
+        ]
+      },
+      {
+        "id": 9119,
+        "values": [
+          "Giồng Riềng"
+        ]
+      },
+      {
+        "id": 9118,
+        "values": [
+          "An Biên"
+        ]
+      },
+      {
+        "id": 9117,
+        "values": [
+          "Ninh Hòa"
+        ]
+      },
+      {
+        "id": 9116,
+        "values": [
+          "Vạn Ninh"
+        ]
+      },
+      {
+        "id": 9115,
+        "values": [
+          "Nha Trang"
+        ]
+      },
+      {
+        "id": 9114,
+        "values": [
+          "Cam Lâm"
+        ]
+      },
+      {
+        "id": 9113,
+        "values": [
+          "Diên Khánh"
+        ]
+      },
+      {
+        "id": 9112,
+        "values": [
+          "Cam Ranh"
+        ]
+      },
+      {
+        "id": 9111,
+        "values": [
+          "Trường Sa"
+        ]
+      },
+      {
+        "id": 9110,
+        "values": [
+          "Nghĩa Lộ"
+        ]
+      },
+      {
+        "id": 9109,
+        "values": [
+          "Yên Bái"
+        ]
+      },
+      {
+        "id": 9108,
+        "values": [
+          "Văn Chấn"
+        ]
+      },
+      {
+        "id": 9107,
+        "values": [
+          "Văn Yên"
+        ]
+      },
+      {
+        "id": 9106,
+        "values": [
+          "Trấn Yên"
+        ]
+      },
+      {
+        "id": 9105,
+        "values": [
+          "Trạm Tấu"
+        ]
+      },
+      {
+        "id": 9104,
+        "values": [
+          "Lục Yên"
+        ]
+      },
+      {
+        "id": 9103,
+        "values": [
+          "Yên Bình"
+        ]
+      },
+      {
+        "id": 9102,
+        "values": [
+          "Yên Lạc"
+        ]
+      },
+      {
+        "id": 9101,
+        "values": [
+          "Tam Dương"
+        ]
+      },
+      {
+        "id": 9100,
+        "values": [
+          "Phúc Yên"
+        ]
+      },
+      {
+        "id": 9099,
+        "values": [
+          "Tam Đảo"
+        ]
+      },
+      {
+        "id": 9098,
+        "values": [
+          "Vĩnh Yên"
+        ]
+      },
+      {
+        "id": 9097,
+        "values": [
+          "Vĩnh Tường"
+        ]
+      },
+      {
+        "id": 9096,
+        "values": [
+          "Bình Xuyên"
+        ]
+      },
+      {
+        "id": 9095,
+        "values": [
+          "Lập Thạch"
+        ]
+      },
+      {
+        "id": 9094,
+        "values": [
+          "Mang Thít"
+        ]
+      },
+      {
+        "id": 9093,
+        "values": [
+          "Long Hồ"
+        ]
+      },
+      {
+        "id": 9092,
+        "values": [
+          "Vĩnh Long"
+        ]
+      },
+      {
+        "id": 9091,
+        "values": [
+          "Vũng Liêm"
+        ]
+      },
+      {
+        "id": 9090,
+        "values": [
+          "Trà Ôn"
+        ]
+      },
+      {
+        "id": 9089,
+        "values": [
+          "Tam Bình"
+        ]
+      },
+      {
+        "id": 9088,
+        "values": [
+          "Bình Tân"
+        ]
+      },
+      {
+        "id": 9087,
+        "values": [
+          "Bình Minh"
+        ]
+      },
+      {
+        "id": 9086,
+        "values": [
+          "Khánh Vĩnh"
+        ]
+      },
+      {
+        "id": 9085,
+        "values": [
+          "Khánh Sơn"
+        ]
+      },
+      {
+        "id": 9084,
+        "values": [
+          "Cẩm Xuyên"
+        ]
+      },
+      {
+        "id": 9083,
+        "values": [
+          "Nghi Xuân"
+        ]
+      },
+      {
+        "id": 9540,
+        "values": [
+          "Lắk"
+        ]
+      },
+      {
+        "id": 9539,
+        "values": [
+          "Gò Dầu"
+        ]
+      },
+      {
+        "id": 9538,
+        "values": [
+          "Duyên Hải"
+        ]
+      },
+      {
+        "id": 9537,
+        "values": [
+          "Cái Bè"
+        ]
+      },
+      {
+        "id": 9536,
+        "values": [
+          "Võ Nhai"
+        ]
+      },
+      {
+        "id": 9535,
+        "values": [
+          "Đông Hưng"
+        ]
+      },
+      {
+        "id": 9534,
+        "values": [
+          "Tĩnh Gia"
+        ]
+      },
+      {
+        "id": 9533,
+        "values": [
+          "Mường Lát"
+        ]
+      },
+      {
+        "id": 9532,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9531,
+        "values": [
+          "Tân Phú"
+        ]
+      },
+      {
+        "id": 9530,
+        "values": [
+          "Gia Bình"
+        ]
+      },
+      {
+        "id": 9529,
+        "values": [
+          "Chợ Đồn"
+        ]
+      },
+      {
+        "id": 9528,
+        "values": [
+          "Vân Hồ"
+        ]
+      },
+      {
+        "id": 9527,
+        "values": [
+          "Ba Đồn"
+        ]
+      },
+      {
+        "id": 9526,
+        "values": [
+          "Phú Riềng"
+        ]
+      },
+      {
+        "id": 9525,
+        "values": [
+          "Nậm Pồ"
+        ]
+      },
+      {
+        "id": 9524,
+        "values": [
+          "TX. Duyên Hải"
+        ]
+      },
+      {
+        "id": 9523,
+        "values": [
+          "Bắc Tân Uyên"
+        ]
+      },
+      {
+        "id": 9522,
+        "values": [
+          "Bàu Bàng"
+        ]
+      },
+      {
+        "id": 9521,
+        "values": [
+          "Nam Từ Liêm"
+        ]
+      },
+      {
+        "id": 9520,
+        "values": [
+          "Bắc Từ Liêm"
+        ]
+      },
+      {
+        "id": 9519,
+        "values": [
+          "Sông Lô"
+        ]
+      },
+      {
+        "id": 9518,
+        "values": [
+          "Nậm Nhùn"
+        ]
+      },
+      {
+        "id": 9517,
+        "values": [
+          "Lâm Bình"
+        ]
+      },
+      {
+        "id": 9516,
+        "values": [
+          "TP. Cao Lãnh"
+        ]
+      },
+      {
+        "id": 9515,
+        "values": [
+          "TX. Hồng Ngự"
+        ]
+      },
+      {
+        "id": 9514,
+        "values": [
+          "Hoàng Mai"
+        ]
+      },
+      {
+        "id": 9513,
+        "values": [
+          "Quảng Yên"
+        ]
+      },
+      {
+        "id": 9512,
+        "values": [
+          "Ia H'drai"
+        ]
+      },
+      {
+        "id": 9511,
+        "values": [
+          "Gia Lâm"
+        ]
+      },
+      {
+        "id": 9510,
+        "values": [
+          "Sơn Tây"
+        ]
+      },
+      {
+        "id": 9509,
+        "values": [
+          "Phúc Thọ"
+        ]
+      },
+      {
+        "id": 9508,
+        "values": [
+          "Phú Xuyên"
+        ]
+      },
+      {
+        "id": 9507,
+        "values": [
+          "Tây Hồ"
+        ]
+      },
+      {
+        "id": 9506,
+        "values": [
+          "Long Biên"
+        ]
+      },
+      {
+        "id": 9505,
+        "values": [
+          "Mỹ Đức"
+        ]
+      },
+      {
+        "id": 9504,
+        "values": [
+          "Cầu Giấy"
+        ]
+      },
+      {
+        "id": 9503,
+        "values": [
+          "Ba Vì"
+        ]
+      },
+      {
+        "id": 9502,
+        "values": [
+          "Hai Bà Trưng"
+        ]
+      },
+      {
+        "id": 9501,
+        "values": [
+          "Hà Đông"
+        ]
+      },
+      {
+        "id": 9500,
+        "values": [
+          "Thường Tín"
+        ]
+      },
+      {
+        "id": 9499,
+        "values": [
+          "Hải An"
+        ]
+      },
+      {
+        "id": 9498,
+        "values": [
+          "Lê Chân"
+        ]
+      },
+      {
+        "id": 9497,
+        "values": [
+          "An Dương"
+        ]
+      },
+      {
+        "id": 9496,
+        "values": [
+          "Bạch Long Vĩ"
+        ]
+      },
+      {
+        "id": 9495,
+        "values": [
+          "Ngô Quyền"
+        ]
+      },
+      {
+        "id": 9494,
+        "values": [
+          "Kiến An"
+        ]
+      },
+      {
+        "id": 9493,
+        "values": [
+          "Dương Kinh"
+        ]
+      },
+      {
+        "id": 9492,
+        "values": [
+          "Cát Hải"
+        ]
+      },
+      {
+        "id": 9491,
+        "values": [
+          "Đồ Sơn"
+        ]
+      },
+      {
+        "id": 9490,
+        "values": [
+          "An Lão"
+        ]
+      },
+      {
+        "id": 9489,
+        "values": [
+          "Thủy Nguyên"
+        ]
+      },
+      {
+        "id": 9488,
+        "values": [
+          "Hồng Bàng"
+        ]
+      },
+      {
+        "id": 9487,
+        "values": [
+          "Tiên Lãng"
+        ]
+      },
+      {
+        "id": 9486,
+        "values": [
+          "Vĩnh Bảo"
+        ]
+      },
+      {
+        "id": 9485,
+        "values": [
+          "Kiến Thụy"
+        ]
+      },
+      {
+        "id": 9484,
+        "values": [
+          "Thốt Nốt"
+        ]
+      },
+      {
+        "id": 9483,
+        "values": [
+          "Ô Môn"
+        ]
+      },
+      {
+        "id": 9482,
+        "values": [
+          "Thới Lai"
+        ]
+      },
+      {
+        "id": 9481,
+        "values": [
+          "Ninh Kiều"
+        ]
+      },
+      {
+        "id": 9480,
+        "values": [
+          "Cái Răng"
+        ]
+      },
+      {
+        "id": 9479,
+        "values": [
+          "Phong Điền"
+        ]
+      },
+      {
+        "id": 9478,
+        "values": [
+          "Bình Thủy"
+        ]
+      },
+      {
+        "id": 9477,
+        "values": [
+          "Vĩnh Thạnh"
+        ]
+      },
+      {
+        "id": 9476,
+        "values": [
+          "Cờ Đỏ"
+        ]
+      },
+      {
+        "id": 9475,
+        "values": [
+          "Điện Biên Phủ"
+        ]
+      },
+      {
+        "id": 9474,
+        "values": [
+          "Mường Nhé"
+        ]
+      },
+      {
+        "id": 9473,
+        "values": [
+          "Mường Ảng"
+        ]
+      },
+      {
+        "id": 9472,
+        "values": [
+          "Quận 2"
+        ]
+      },
+      {
+        "id": 9471,
+        "values": [
+          "Hóc Môn"
+        ]
+      },
+      {
+        "id": 9470,
+        "values": [
+          "Quận 11"
+        ]
+      },
+      {
+        "id": 9469,
+        "values": [
+          "Bình Chánh"
+        ]
+      },
+      {
+        "id": 9468,
+        "values": [
+          "Quận 7"
+        ]
+      },
+      {
+        "id": 9467,
+        "values": [
+          "Quận 4"
+        ]
+      },
+      {
+        "id": 9466,
+        "values": [
+          "Bình Tân"
+        ]
+      },
+      {
+        "id": 9465,
+        "values": [
+          "Quận 1"
+        ]
+      },
+      {
+        "id": 9464,
+        "values": [
+          "Nhà Bè"
+        ]
+      },
+      {
+        "id": 9463,
+        "values": [
+          "Tân Bình"
+        ]
+      },
+      {
+        "id": 9462,
+        "values": [
+          "Tân Phú"
+        ]
+      },
+      {
+        "id": 9461,
+        "values": [
+          "Cần Giờ"
+        ]
+      },
+      {
+        "id": 9082,
+        "values": [
+          "Lộc Hà"
+        ]
+      },
+      {
+        "id": 9081,
+        "values": [
+          "Đức Thọ"
+        ]
+      },
+      {
+        "id": 9080,
+        "values": [
+          "Kỳ Anh"
+        ]
+      },
+      {
+        "id": 9079,
+        "values": [
+          "Vũ Quang"
+        ]
+      },
+      {
+        "id": 9078,
+        "values": [
+          "Can Lộc"
+        ]
+      },
+      {
+        "id": 9077,
+        "values": [
+          "Hồng Lĩnh"
+        ]
+      },
+      {
+        "id": 9076,
+        "values": [
+          "Hà Tĩnh"
+        ]
+      },
+      {
+        "id": 9075,
+        "values": [
+          "Hương Khê"
+        ]
+      },
+      {
+        "id": 9074,
+        "values": [
+          "Hương Sơn"
+        ]
+      },
+      {
+        "id": 9073,
+        "values": [
+          "Thạch Hà"
+        ]
+      },
+      {
+        "id": 9072,
+        "values": [
+          "Duy Tiên"
+        ]
+      },
+      {
+        "id": 9071,
+        "values": [
+          "Kim Bảng"
+        ]
+      },
+      {
+        "id": 9070,
+        "values": [
+          "Thanh Liêm"
+        ]
+      },
+      {
+        "id": 9069,
+        "values": [
+          "Bình Lục"
+        ]
+      },
+      {
+        "id": 9068,
+        "values": [
+          "Lý Nhân"
+        ]
+      },
+      {
+        "id": 9067,
+        "values": [
+          "Phủ Lý"
+        ]
+      },
+      {
+        "id": 9066,
+        "values": [
+          "Hà Giang"
+        ]
+      },
+      {
+        "id": 9065,
+        "values": [
+          "Bắc Quang"
+        ]
+      },
+      {
+        "id": 9064,
+        "values": [
+          "Yên Minh"
+        ]
+      },
+      {
+        "id": 9063,
+        "values": [
+          "Quản Bạ"
+        ]
+      },
+      {
+        "id": 9062,
+        "values": [
+          "Đồng Văn"
+        ]
+      },
+      {
+        "id": 9061,
+        "values": [
+          "Mèo Vạc"
+        ]
+      },
+      {
+        "id": 9060,
+        "values": [
+          "Vị Xuyên"
+        ]
+      },
+      {
+        "id": 9059,
+        "values": [
+          "Quang Bình"
+        ]
+      },
+      {
+        "id": 9058,
+        "values": [
+          "Hoàng Su Phì"
+        ]
+      },
+      {
+        "id": 9057,
+        "values": [
+          "Xín Mần"
+        ]
+      },
+      {
+        "id": 9056,
+        "values": [
+          "Bắc Mê"
+        ]
+      },
+      {
+        "id": 9055,
+        "values": [
+          "Ân Thi"
+        ]
+      },
+      {
+        "id": 9054,
+        "values": [
+          "Khoái Châu"
+        ]
+      },
+      {
+        "id": 9053,
+        "values": [
+          "Mỹ Hào"
+        ]
+      },
+      {
+        "id": 9052,
+        "values": [
+          "Kim Động"
+        ]
+      },
+      {
+        "id": 9051,
+        "values": [
+          "Văn Giang"
+        ]
+      },
+      {
+        "id": 9050,
+        "values": [
+          "Tiên Lữ"
+        ]
+      },
+      {
+        "id": 9049,
+        "values": [
+          "Hưng Yên"
+        ]
+      },
+      {
+        "id": 9048,
+        "values": [
+          "Yên Mỹ"
+        ]
+      },
+      {
+        "id": 9047,
+        "values": [
+          "Văn Lâm"
+        ]
+      },
+      {
+        "id": 9046,
+        "values": [
+          "Phù Cừ"
+        ]
+      },
+      {
+        "id": 9045,
+        "values": [
+          "Lạc Thủy"
+        ]
+      },
+      {
+        "id": 9044,
+        "values": [
+          "Lạc Sơn"
+        ]
+      },
+      {
+        "id": 9043,
+        "values": [
+          "Tân Lạc"
+        ]
+      },
+      {
+        "id": 9042,
+        "values": [
+          "Đà Bắc"
+        ]
+      },
+      {
+        "id": 9041,
+        "values": [
+          "Yên Thủy"
+        ]
+      },
+      {
+        "id": 9040,
+        "values": [
+          "Kỳ Sơn"
+        ]
+      },
+      {
+        "id": 9039,
+        "values": [
+          "Cao Phong"
+        ]
+      },
+      {
+        "id": 9038,
+        "values": [
+          "Kim Bôi"
+        ]
+      },
+      {
+        "id": 9037,
+        "values": [
+          "Hòa Bình"
+        ]
+      },
+      {
+        "id": 9036,
+        "values": [
+          "Mai Châu"
+        ]
+      },
+      {
+        "id": 9035,
+        "values": [
+          "Lương Sơn"
+        ]
+      },
+      {
+        "id": 9034,
+        "values": [
+          "Long Mỹ"
+        ]
+      },
+      {
+        "id": 9033,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 9032,
+        "values": [
+          "Vị Thủy"
+        ]
+      },
+      {
+        "id": 9031,
+        "values": [
+          "Châu Thành A"
+        ]
+      },
+      {
+        "id": 9030,
+        "values": [
+          "Vị Thanh"
+        ]
+      },
+      {
+        "id": 9029,
+        "values": [
+          "Phụng Hiệp"
+        ]
+      },
+      {
+        "id": 9028,
+        "values": [
+          "Ngã Bảy"
+        ]
+      },
+      {
+        "id": 9027,
+        "values": [
+          "Gia Lộc"
+        ]
+      },
+      {
+        "id": 9026,
+        "values": [
+          "Lý Sơn"
+        ]
+      },
+      {
+        "id": 9025,
+        "values": [
+          "Sơn Tịnh"
+        ]
+      },
+      {
+        "id": 9024,
+        "values": [
+          "Mộ Đức"
+        ]
+      },
+      {
+        "id": 9023,
+        "values": [
+          "Sơn Hà"
+        ]
+      },
+      {
+        "id": 9022,
+        "values": [
+          "Tư Nghĩa"
+        ]
+      },
+      {
+        "id": 9021,
+        "values": [
+          "Trà Bồng"
+        ]
+      },
+      {
+        "id": 9020,
+        "values": [
+          "Đức Phổ"
+        ]
+      },
+      {
+        "id": 9019,
+        "values": [
+          "Quảng Ngãi"
+        ]
+      },
+      {
+        "id": 9018,
+        "values": [
+          "Tây Trà"
+        ]
+      },
+      {
+        "id": 9017,
+        "values": [
+          "Nghĩa Hành"
+        ]
+      },
+      {
+        "id": 9016,
+        "values": [
+          "Điện Bàn"
+        ]
+      },
+      {
+        "id": 9015,
+        "values": [
+          "Đại Lộc"
+        ]
+      },
+      {
+        "id": 9014,
+        "values": [
+          "Nam Giang"
+        ]
+      },
+      {
+        "id": 9013,
+        "values": [
+          "Phú Ninh"
+        ]
+      },
+      {
+        "id": 9012,
+        "values": [
+          "Hiệp Đức"
+        ]
+      },
+      {
+        "id": 9011,
+        "values": [
+          "Quế Sơn"
+        ]
+      },
+      {
+        "id": 9010,
+        "values": [
+          "Núi Thành"
+        ]
+      },
+      {
+        "id": 9009,
+        "values": [
+          "Duy Xuyên"
+        ]
+      },
+      {
+        "id": 9008,
+        "values": [
+          "Tây Giang"
+        ]
+      },
+      {
+        "id": 9007,
+        "values": [
+          "Tiên Phước"
+        ]
+      },
+      {
+        "id": 9006,
+        "values": [
+          "Đông Giang"
+        ]
+      },
+      {
+        "id": 9005,
+        "values": [
+          "Nam Trà My"
+        ]
+      },
+      {
+        "id": 9004,
+        "values": [
+          "Nông Sơn"
+        ]
+      },
+      {
+        "id": 9003,
+        "values": [
+          "Tam Kỳ"
+        ]
+      },
+      {
+        "id": 9002,
+        "values": [
+          "Hội An"
+        ]
+      },
+      {
+        "id": 9001,
+        "values": [
+          "Phước Sơn"
+        ]
+      },
+      {
+        "id": 9000,
+        "values": [
+          "Bắc Trà My"
+        ]
+      },
+      {
+        "id": 8999,
+        "values": [
+          "Thăng Bình"
+        ]
+      },
+      {
+        "id": 8998,
+        "values": [
+          "Bố Trạch"
+        ]
+      },
+      {
+        "id": 8997,
+        "values": [
+          "Lệ Thủy"
+        ]
+      },
+      {
+        "id": 8996,
+        "values": [
+          "Minh Hóa"
+        ]
+      },
+      {
+        "id": 8995,
+        "values": [
+          "Quảng Ninh"
+        ]
+      },
+      {
+        "id": 8994,
+        "values": [
+          "Tuyên Hóa"
+        ]
+      },
+      {
+        "id": 8993,
+        "values": [
+          "Đồng Hới"
+        ]
+      },
+      {
+        "id": 8992,
+        "values": [
+          "Quảng Trạch"
+        ]
+      },
+      {
+        "id": 8991,
+        "values": [
+          "Đông Hòa"
+        ]
+      },
+      {
+        "id": 8990,
+        "values": [
+          "Sơn Hòa"
+        ]
+      },
+      {
+        "id": 8989,
+        "values": [
+          "Nam Sách"
+        ]
+      },
+      {
+        "id": 8988,
+        "values": [
+          "Cẩm Giàng"
+        ]
+      },
+      {
+        "id": 8987,
+        "values": [
+          "Hải Dương"
+        ]
+      },
+      {
+        "id": 8986,
+        "values": [
+          "Bình Giang"
+        ]
+      },
+      {
+        "id": 8985,
+        "values": [
+          "Kinh Môn"
+        ]
+      },
+      {
+        "id": 8984,
+        "values": [
+          "Thanh Miện"
+        ]
+      },
+      {
+        "id": 8983,
+        "values": [
+          "Ninh Giang"
+        ]
+      },
+      {
+        "id": 8982,
+        "values": [
+          "Đắk Pơ"
+        ]
+      },
+      {
+        "id": 8981,
+        "values": [
+          "Đăk Đoa"
+        ]
+      },
+      {
+        "id": 8980,
+        "values": [
+          "Pleiku"
+        ]
+      },
+      {
+        "id": 8979,
+        "values": [
+          "Chư Păh"
+        ]
+      },
+      {
+        "id": 8978,
+        "values": [
+          "Chư Pưh"
+        ]
+      },
+      {
+        "id": 8977,
+        "values": [
+          "Kông Chro"
+        ]
+      },
+      {
+        "id": 8976,
+        "values": [
+          "Chư Prông"
+        ]
+      },
+      {
+        "id": 8975,
+        "values": [
+          "Đức Cơ"
+        ]
+      },
+      {
+        "id": 8974,
+        "values": [
+          "Ia Grai"
+        ]
+      },
+      {
+        "id": 8973,
+        "values": [
+          "Ia Pa"
+        ]
+      },
+      {
+        "id": 8972,
+        "values": [
+          "Chư Sê"
+        ]
+      },
+      {
+        "id": 8971,
+        "values": [
+          "An Khê"
+        ]
+      },
+      {
+        "id": 8970,
+        "values": [
+          "KBang"
+        ]
+      },
+      {
+        "id": 8969,
+        "values": [
+          "Phú Thiện"
+        ]
+      },
+      {
+        "id": 8968,
+        "values": [
+          "Mang Yang"
+        ]
+      },
+      {
+        "id": 8967,
+        "values": [
+          "Krông Pa"
+        ]
+      },
+      {
+        "id": 8966,
+        "values": [
+          "Ayun Pa"
+        ]
+      },
+      {
+        "id": 8965,
+        "values": [
+          "Thới Bình"
+        ]
+      },
+      {
+        "id": 8964,
+        "values": [
+          "Năm Căn"
+        ]
+      },
+      {
+        "id": 8963,
+        "values": [
+          "Ngọc Hiển"
+        ]
+      },
+      {
+        "id": 8962,
+        "values": [
+          "Trần Văn Thời"
+        ]
+      },
+      {
+        "id": 8961,
+        "values": [
+          "Đầm Dơi"
+        ]
+      },
+      {
+        "id": 8960,
+        "values": [
+          "Cà Mau"
+        ]
+      },
+      {
+        "id": 8959,
+        "values": [
+          "Cái Nước"
+        ]
+      },
+      {
+        "id": 8958,
+        "values": [
+          "U Minh"
+        ]
+      },
+      {
+        "id": 8957,
+        "values": [
+          "Phú Tân"
+        ]
+      },
+      {
+        "id": 8956,
+        "values": [
+          "Phục Hòa"
+        ]
+      },
+      {
+        "id": 8955,
+        "values": [
+          "Bảo Lâm"
+        ]
+      },
+      {
+        "id": 8954,
+        "values": [
+          "Nguyên Bình"
+        ]
+      },
+      {
+        "id": 8953,
+        "values": [
+          "Quảng Uyên"
+        ]
+      },
+      {
+        "id": 8952,
+        "values": [
+          "Hà Quảng"
+        ]
+      },
+      {
+        "id": 8951,
+        "values": [
+          "Thạch An"
+        ]
+      },
+      {
+        "id": 8950,
+        "values": [
+          "Cao Bằng"
+        ]
+      },
+      {
+        "id": 8949,
+        "values": [
+          "Bảo Lạc"
+        ]
+      },
+      {
+        "id": 8948,
+        "values": [
+          "Hòa An"
+        ]
+      },
+      {
+        "id": 8947,
+        "values": [
+          "Hạ Lang"
+        ]
+      },
+      {
+        "id": 8946,
+        "values": [
+          "Thông Nông"
+        ]
+      },
+      {
+        "id": 8945,
+        "values": [
+          "Tịnh Biên"
+        ]
+      },
+      {
+        "id": 8944,
+        "values": [
+          "Trà Lĩnh"
+        ]
+      },
+      {
+        "id": 8943,
+        "values": [
+          "Trùng Khánh"
+        ]
+      },
+      {
+        "id": 8942,
+        "values": [
+          "Hoài Nhơn"
+        ]
+      },
+      {
+        "id": 8941,
+        "values": [
+          "Vân Canh"
+        ]
+      },
+      {
+        "id": 8940,
+        "values": [
+          "Phù Mỹ"
+        ]
+      },
+      {
+        "id": 8939,
+        "values": [
+          "Tây Sơn"
+        ]
+      },
+      {
+        "id": 8938,
+        "values": [
+          "Tuy Phước"
+        ]
+      },
+      {
+        "id": 8937,
+        "values": [
+          "An Lão"
+        ]
+      },
+      {
+        "id": 8936,
+        "values": [
+          "Phù Cát"
+        ]
+      },
+      {
+        "id": 8935,
+        "values": [
+          "Hoài Ân"
+        ]
+      },
+      {
+        "id": 8934,
+        "values": [
+          "Vĩnh Thạnh"
+        ]
+      },
+      {
+        "id": 8933,
+        "values": [
+          "An Nhơn"
+        ]
+      },
+      {
+        "id": 8932,
+        "values": [
+          "Qui Nhơn"
+        ]
+      },
+      {
+        "id": 8931,
+        "values": [
+          "Phan Thiết"
+        ]
+      },
+      {
+        "id": 8930,
+        "values": [
+          "Bắc Bình"
+        ]
+      },
+      {
+        "id": 8929,
+        "values": [
+          "Đức Linh"
+        ]
+      },
+      {
+        "id": 8928,
+        "values": [
+          "Hàm Thuận Nam"
+        ]
+      },
+      {
+        "id": 8927,
+        "values": [
+          "La Gi"
+        ]
+      },
+      {
+        "id": 8926,
+        "values": [
+          "Hàm Thuận Bắc"
+        ]
+      },
+      {
+        "id": 8925,
+        "values": [
+          "Tuy Phong"
+        ]
+      },
+      {
+        "id": 8924,
+        "values": [
+          "Tánh Linh"
+        ]
+      },
+      {
+        "id": 8923,
+        "values": [
+          "Phú Quý"
+        ]
+      },
+      {
+        "id": 8922,
+        "values": [
+          "Hàm Tân"
+        ]
+      },
+      {
+        "id": 8921,
+        "values": [
+          "Chơn Thành"
+        ]
+      },
+      {
+        "id": 8920,
+        "values": [
+          "Bình Long"
+        ]
+      },
+      {
+        "id": 8919,
+        "values": [
+          "Hớn Quản"
+        ]
+      },
+      {
+        "id": 8918,
+        "values": [
+          "Phước Long"
+        ]
+      },
+      {
+        "id": 8917,
+        "values": [
+          "Đồng Phú"
+        ]
+      },
+      {
+        "id": 8916,
+        "values": [
+          "Bù Đốp"
+        ]
+      },
+      {
+        "id": 8915,
+        "values": [
+          "Đồng Xoài"
+        ]
+      },
+      {
+        "id": 8914,
+        "values": [
+          "Bù Đăng"
+        ]
+      },
+      {
+        "id": 8913,
+        "values": [
+          "Lộc Ninh"
+        ]
+      },
+      {
+        "id": 8912,
+        "values": [
+          "Bù Gia Mập"
+        ]
+      },
+      {
+        "id": 8911,
+        "values": [
+          "Dĩ An"
+        ]
+      },
+      {
+        "id": 8910,
+        "values": [
+          "Tân Uyên"
+        ]
+      },
+      {
+        "id": 8909,
+        "values": [
+          "Bến Cát"
+        ]
+      },
+      {
+        "id": 8908,
+        "values": [
+          "Phú Giáo"
+        ]
+      },
+      {
+        "id": 8907,
+        "values": [
+          "Thủ Dầu Một"
+        ]
+      },
+      {
+        "id": 8906,
+        "values": [
+          "Dầu Tiếng"
+        ]
+      },
+      {
+        "id": 8905,
+        "values": [
+          "Thuận An"
+        ]
+      },
+      {
+        "id": 8904,
+        "values": [
+          "Long Điền"
+        ]
+      },
+      {
+        "id": 8903,
+        "values": [
+          "Vũng Tàu"
+        ]
+      },
+      {
+        "id": 8902,
+        "values": [
+          "Đất Đỏ"
+        ]
+      },
+      {
+        "id": 8901,
+        "values": [
+          "Châu Đức"
+        ]
+      },
+      {
+        "id": 8900,
+        "values": [
+          "Tân Thành"
+        ]
+      },
+      {
+        "id": 8899,
+        "values": [
+          "Xuyên Mộc"
+        ]
+      },
+      {
+        "id": 8898,
+        "values": [
+          "Côn Đảo"
+        ]
+      },
+      {
+        "id": 8897,
+        "values": [
+          "Bà Rịa"
+        ]
+      },
+      {
+        "id": 8896,
+        "values": [
+          "Giồng Trôm"
+        ]
+      },
+      {
+        "id": 8895,
+        "values": [
+          "Chợ Lách"
+        ]
+      },
+      {
+        "id": 8894,
+        "values": [
+          "Bến Tre"
+        ]
+      },
+      {
+        "id": 8893,
+        "values": [
+          "Bình Đại"
+        ]
+      },
+      {
+        "id": 8892,
+        "values": [
+          "Mỏ Cày Nam"
+        ]
+      },
+      {
+        "id": 8891,
+        "values": [
+          "Châu Thành"
+        ]
+      },
+      {
+        "id": 8890,
+        "values": [
+          "Mỏ Cày Bắc"
+        ]
+      },
+      {
+        "id": 8889,
+        "values": [
+          "Ba Tri"
+        ]
+      },
+      {
+        "id": 8888,
+        "values": [
+          "Thạnh Phú"
+        ]
+      },
+      {
+        "id": 8887,
+        "values": [
+          "Yên Phong"
+        ]
+      },
+      {
+        "id": 8886,
+        "values": [
+          "Từ Sơn"
+        ]
+      },
+      {
+        "id": 8885,
+        "values": [
+          "Bắc Ninh"
+        ]
+      },
+      {
+        "id": 8884,
+        "values": [
+          "Quế Võ"
+        ]
+      },
+      {
+        "id": 8883,
+        "values": [
+          "Lương Tài"
+        ]
+      },
+      {
+        "id": 8882,
+        "values": [
+          "Thuận Thành"
+        ]
+      },
+      {
+        "id": 8881,
+        "values": [
+          "Tiên Du"
+        ]
+      },
+      {
+        "id": 8880,
+        "values": [
+          "Hòa Bình"
+        ]
+      },
+      {
+        "id": 8879,
+        "values": [
+          "Đông Hải"
+        ]
+      },
+      {
+        "id": 8878,
+        "values": [
+          "Hồng Dân"
+        ]
+      },
+      {
+        "id": 8877,
+        "values": [
+          "Bạc Liêu"
+        ]
+      },
+      {
+        "id": 8876,
+        "values": [
+          "Phước Long"
+        ]
+      },
+      {
+        "id": 8875,
+        "values": [
+          "Vĩnh Lợi"
+        ]
+      },
+      {
+        "id": 8874,
+        "values": [
+          "Giá Rai"
+        ]
+      },
+      {
+        "id": 8873,
+        "values": [
+          "Ngân Sơn"
+        ]
+      },
+      {
+        "id": 8872,
+        "values": [
+          "Bạch Thông"
+        ]
+      },
+      {
+        "id": 8871,
+        "values": [
+          "Bắc Kạn"
+        ]
+      },
+      {
+        "id": 8870,
+        "values": [
+          "Na Rì"
+        ]
+      },
+      {
+        "id": 8869,
+        "values": [
+          "Ba Bể"
+        ]
+      },
+      {
+        "id": 8868,
+        "values": [
+          "Pác Nặm"
+        ]
+      },
+      {
+        "id": 8867,
+        "values": [
+          "Chợ Mới"
+        ]
+      },
+      {
+        "id": 9244,
+        "values": [
+          "Bến Lức"
+        ]
+      },
+      {
+        "id": 9243,
+        "values": [
+          "KIẾN TƯỜNG"
+        ]
+      },
+      {
+        "id": 9242,
+        "values": [
+          "Thạnh Hóa"
+        ]
+      },
+      {
+        "id": 9241,
+        "values": [
+          "Tân Trụ"
+        ]
+      },
+      {
+        "id": 9240,
+        "values": [
+          "Sìn Hồ"
+        ]
+      },
+      {
+        "id": 9239,
+        "values": [
+          "Tân Uyên"
+        ]
+      },
+      {
+        "id": 9238,
+        "values": [
+          "Tam Đường"
+        ]
+      },
+      {
+        "id": 9237,
+        "values": [
+          "Than Uyên"
+        ]
+      },
+      {
+        "id": 9236,
+        "values": [
+          "Phong Thổ"
+        ]
+      },
+      {
+        "id": 9235,
+        "values": [
+          "Lai Châu"
+        ]
+      },
+      {
+        "id": 9234,
+        "values": [
+          "Mường Tè"
+        ]
+      },
+      {
+        "id": 9233,
+        "values": [
+          "Lộc Bình"
+        ]
+      },
+      {
+        "id": 9232,
+        "values": [
+          "Văn Lãng"
+        ]
+      },
+      {
+        "id": 9231,
+        "values": [
+          "Tràng Định"
+        ]
+      },
+      {
+        "id": 9230,
+        "values": [
+          "Bắc Sơn"
+        ]
+      },
+      {
+        "id": 8866,
+        "values": [
+          "Sơn Động"
+        ]
+      },
+      {
+        "id": 8865,
+        "values": [
+          "Yên Dũng"
+        ]
+      },
+      {
+        "id": 8864,
+        "values": [
+          "Yên Thế"
+        ]
+      },
+      {
+        "id": 8863,
+        "values": [
+          "Lục Nam"
+        ]
+      },
+      {
+        "id": 8862,
+        "values": [
+          "Điện Biên"
+        ]
+      },
+      {
+        "id": 8861,
+        "values": [
+          "Tuần Giáo"
+        ]
+      },
+      {
+        "id": 8860,
+        "values": [
+          "Mường Chà"
+        ]
+      },
+      {
+        "id": 8859,
+        "values": [
+          "Điện Biên Đông"
+        ]
+      },
+      {
+        "id": 8858,
+        "values": [
+          "Mường Lay"
+        ]
+      },
+      {
+        "id": 8857,
+        "values": [
+          "Đắk Mil"
+        ]
+      },
+      {
+        "id": 8856,
+        "values": [
+          "Gia Nghĩa"
+        ]
+      },
+      {
+        "id": 8855,
+        "values": [
+          "Krông Nô"
+        ]
+      },
+      {
+        "id": 8854,
+        "values": [
+          "Đắk R'Lấp"
+        ]
+      },
+      {
+        "id": 8853,
+        "values": [
+          "Tuy Đức"
+        ]
+      },
+      {
+        "id": 8852,
+        "values": [
+          "Đăk Glong"
+        ]
+      },
+      {
+        "id": 8851,
+        "values": [
+          "Cư Jút"
+        ]
+      },
+      {
+        "id": 8850,
+        "values": [
+          "Đắk Song"
+        ]
+      },
+      {
+        "id": 8849,
+        "values": [
+          "Krông Ana"
+        ]
+      },
+      {
+        "id": 8848,
+        "values": [
+          "M'Đrắk"
+        ]
+      },
+      {
+        "id": 8847,
+        "values": [
+          "Krông Pắk"
+        ]
+      },
+      {
+        "id": 8846,
+        "values": [
+          "Buôn Đôn"
+        ]
+      },
+      {
+        "id": 8845,
+        "values": [
+          "Ea H'leo"
+        ]
+      },
+      {
+        "id": 8844,
+        "values": [
+          "Ea Súp"
+        ]
+      },
+      {
+        "id": 8843,
+        "values": [
+          "Cư M'gar"
+        ]
+      },
+      {
+        "id": 8842,
+        "values": [
+          "Krông Năng"
+        ]
+      },
+      {
+        "id": 8841,
+        "values": [
+          "Krông Bông"
+        ]
+      },
+      {
+        "id": 8840,
+        "values": [
+          "Cư Kuin"
+        ]
+      },
+      {
+        "id": 8839,
+        "values": [
+          "Krông Búk"
+        ]
+      },
+      {
+        "id": 8838,
+        "values": [
+          "Ea Kar"
+        ]
+      },
+      {
+        "id": 8837,
+        "values": [
+          "Buôn Ma Thuột"
+        ]
+      },
+      {
+        "id": 8836,
+        "values": [
+          "Buôn Hồ"
+        ]
+      },
+      {
+        "id": 8835,
+        "values": [
+          "Kim Thành"
+        ]
+      },
+      {
+        "id": 8834,
+        "values": [
+          "Thanh Hà"
+        ]
+      },
+      {
+        "id": 8833,
+        "values": [
+          "Tứ Kỳ"
+        ]
+      },
+      {
+        "id": 8832,
+        "values": [
+          "Chí Linh"
+        ]
+      }
+    ]
+  }
+}
