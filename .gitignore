@@ -54,3 +54,7 @@ Thumbs.db
 # intellij
 .idea
 
+# evaluating result
+address
+.ipynb_checkpoints
+tests

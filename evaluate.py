@@ -157,125 +157,303 @@ def save_data_excel_multi_sheet(tables, file_name, path_to_file):
     return True
 
 
-path_to_file = os.path.join(os.getcwd(), 'address')
-save_file_name = 'addresses_preprocessed_.xlsx'
-save_file_name = 'test.xlsx'
-# query_and_save(path_to_file,save_file_name)
+########################################
+# Start evaluate part
 
 import time
 
-t0 = time.time()
-
-from load_data import load_address_dict
-from address_extract import extract_group, brute_force_search
-
-address_dict = load_address_dict()
-
-data_as_dict = read_data_excel(save_file_name, path_to_file, is_index=True)
-print(data_as_dict)
-to_proccess_addresses = data_as_dict.get('address')
-
-group_keys = ('street', 'ward', 'district', 'city')
-col_names = ('no', 'address') + group_keys
-print(col_names)
-to_save_dict = {}
-to_save_guess = {}
-for e in col_names:
-    to_save_dict[e] = []
-    to_save_guess[e] = []
-count = 0
-for no, addr in to_proccess_addresses.items():
-    print("Processing record {}".format(count + 1))
-    key_value_pairs = extract_group(addr, group_keys)
-    # print(key_value_pairs)
-    result, guess_result = brute_force_search(address_dict, key_value_pairs, addr)
-    to_save_dict['no'].append(no)
-    to_save_dict['address'].append(addr)
-    for k in group_keys:
-        if type(result) is dict:
-            value = result.get(k)
-            if value is not None:
-                to_save_dict[k].append(value)
-            else:
-                to_save_dict[k].append("no info")
-        else:
-            to_save_dict[k].append("error")
-
-    to_save_guess['no'].append(no)
-    to_save_guess['address'].append(addr)
-    for k in group_keys:
-        if type(guess_result) is dict:
-            value = guess_result.get(k)
-            if value is not None:
-                to_save_guess[k].append(value)
-            else:
-                to_save_guess[k].append("no info")
-        else:
-            to_save_guess[k].append("error")
-
-    count += 1
-    if count == 3000:
-        break
-
-processed_file_name = 'test_result.xlsx'
-if save_data_excel(to_save_dict, processed_file_name, path_to_file):
-    print("Beautiful!")
-processed_file_name_guess = 'test_result_guess.xlsx'
-if save_data_excel(to_save_guess, processed_file_name_guess, path_to_file):
-    print("Beautiful!")
-t1 = time.time()
-elapsed = t1 - t0
-print("Total time elapsed: {}".format(elapsed))
-
-
 path_to_file = os.path.join(os.getcwd(), 'address')
-save_file_name = 'test.xlsx'
+read_file_name = 'test.xlsx'
 
-# from load_data import load_address_dict
-# from address_extract import extract_group, brute_force_search
-# address_dict = load_address_dict()
+from fuzzywuzzy import fuzz
 
-data_as_dict = read_data_excel(save_file_name,path_to_file, is_index=True)
-to_proccess_addresses = data_as_dict.get('address')
 
-group_keys = ('street', 'ward', 'district', 'city')
-col_names = ('no','address') + group_keys
-print(col_names)
-to_save_dict = {}
-to_save_guess = {}
-for e in col_names:
-    to_save_dict[e] = []
-    to_save_guess[e] = []
-count = 0
-for no, addr in to_proccess_addresses.items():
-    print("Processing record {}".format(count + 1))
-    key_value_pairs = extract_group(addr, group_keys)
-    # print(key_value_pairs)
-    result, guess_result = brute_force_search(address_dict, key_value_pairs, addr)
-    to_save_dict['no'].append(no)
-    to_save_dict['address'].append(addr)
-    for k in group_keys:
-        if type(result) is dict:
-            value = result.get(k)
-            if value is not None:
-                to_save_dict[k].append(value)
+from address_extract import AddressExtractor
+
+extractor = AddressExtractor()
+
+
+def read_file_and_extract(read_file_name, save_file_name, limit=None):
+    t0 = time.time()
+
+    data_as_dict = read_data_excel(read_file_name, path_to_file, is_index=True)
+    to_proccess_addresses = data_as_dict.get('address')
+
+    group_keys = ('street', 'ward', 'district', 'province')
+    extra_col_names = ('city_rate','all_rate','type','time')
+    col_names = ('no','address',) + group_keys + extra_col_names
+
+    # print(col_names)
+    to_save_dict = {}
+    for e in col_names:
+        to_save_dict[e] = []
+
+    for no, addr in to_proccess_addresses.items():
+        print("Processing record {}".format(no + 1))
+        # print(key_value_pairs)
+        t2 = time.time()
+        # result = assumption_search(addr,address_dict_normalized,cities_data)
+        result = extractor.assumption_search(address=addr)
+        # print(result)
+        t3 = time.time()
+        result['time'] = t3 - t2
+        for ek in extra_col_names:
+            to_save_dict[ek].append(result[ek])
+
+        to_save_dict['address'].append(addr)
+        to_save_dict['no'].append(no)
+        for k in group_keys:
+            if type(result) is dict:
+                value = result.get(k)
+                if value is not None:
+                    to_save_dict[k].append(value)
+                else:
+                    to_save_dict[k].append("no info")
             else:
-                to_save_dict[k].append("no info")
-        else:
-            to_save_dict[k].append("error")
+                to_save_dict[k].append("error")
 
-    to_save_guess['no'].append(no)
-    to_save_guess['address'].append(addr)
-    for k in group_keys:
-        if type(guess_result) is dict:
-            value = guess_result.get(k)
-            if value is not None:
-                to_save_guess[k].append(value)
+        if no == limit:
+            break
+    if save_data_excel(to_save_dict, save_file_name, path_to_file):
+        print("Beautiful!")
+    t1 = time.time()
+    elapsed = t1 - t0
+    print("Total time elapsed: {}".format(elapsed))
+def read_result_and_evaluate(result_file, evaluate_file, limit=None):
+    from address_extract import clean_all_test
+
+    data_as_dict = read_data_excel(result_file,path_to_file, is_index=True)
+    origin_proccess_addresses = data_as_dict.get('address')
+    group_keys = ('street', 'ward', 'district', 'province')
+    extra_col_names = ('city_rate','all_rate','type','time')
+    col_names = ('no','address') + group_keys + extra_col_names
+
+    match_rate = []
+    match_rate_cleaned = []
+    to_save_dict = dict()
+    for c in col_names:
+        to_save_dict[c] = []
+
+    for no, addr in origin_proccess_addresses.items():
+        # print("Compare record {}".format(no + 1))
+        value_list = []
+        for k in group_keys:
+            cell = data_as_dict.get(k).get(no)
+            value_list.append(cell)
+        value = ' '.join(value_list)
+        if value_list[-1].lower() in ('no info','error'):
+            ratio = 0
+        else:
+            ratio = fuzz.ratio(addr, value)
+            ratio_cleaned = fuzz.ratio(clean_all_test(addr),clean_all_test(value))
+        match_rate.append(ratio)
+        match_rate_cleaned.append(ratio_cleaned)
+        for c in col_names:
+            to_save_dict[c].append(data_as_dict.get(c).get(no))
+        if no == limit:
+            break
+
+
+    # print(match_rate)
+    to_save_dict['match_rate']=match_rate
+    to_save_dict['match_rate_cleaned']=match_rate_cleaned
+
+    # print(to_save_dict)
+    if save_data_excel(to_save_dict, evaluate_file, path_to_file):
+        print("Beautiful too!")
+
+# save_file_name = 'test_result0.xlsx'
+# read_file_and_extract(read_file_name,save_file_name=save_file_name,limit=10000)
+# read_result_and_evaluate(result_file=save_file_name,evaluate_file='eval0.xlsx',limit=10000)
+
+def read_file_and_extract_brute(read_file_name, save_file_name, limit=None):
+    t0 = time.time()
+    # nested_address = load_address_dict()
+    # address_dict_normalized = load_address_dict_normalized()
+    # cities_data = load_cities_data()
+
+    # print(len(address_dict_normalized))
+
+    data_as_dict = read_data_excel(read_file_name, path_to_file, is_index=True)
+    to_proccess_addresses = data_as_dict.get('address')
+
+    group_keys = ('street', 'ward', 'district', 'province')
+    extra_col_names = ('city_rate','all_rate','type','time')
+    col_names = ('no','address',) + group_keys + extra_col_names
+
+    # print(col_names)
+    to_save_dict = {}
+    for e in col_names:
+        to_save_dict[e] = []
+
+    for no, addr in to_proccess_addresses.items():
+        print("Processing record {}".format(no + 1))
+        # print(key_value_pairs)
+        t2 = time.time()
+        # result = assumption_brute_force_search(cities_data,address_dict_normalized, nested_address,addr)
+        result = extractor.assumption_brute_force_search(address=addr)
+        # print(result)
+        t3 = time.time()
+        result['time'] = t3 - t2
+        for ek in extra_col_names:
+            to_save_dict[ek].append(result[ek])
+
+        to_save_dict['address'].append(addr)
+        to_save_dict['no'].append(no)
+        for k in group_keys:
+            if type(result) is dict:
+                value = result.get(k)
+                if value is not None:
+                    to_save_dict[k].append(value)
+                else:
+                    to_save_dict[k].append("no info")
             else:
-                to_save_guess[k].append("no info")
-        else:
-            to_save_guess[k].append("error")
+                to_save_dict[k].append("error")
 
-    count += 1
-    if count == 3000:
-        break
+        if no == limit:
+            break
+    if save_data_excel(to_save_dict, save_file_name, path_to_file):
+        print("Beautiful!")
+    t1 = time.time()
+    elapsed = t1 - t0
+    print("Total time elapsed: {}".format(elapsed))
+def read_result_and_evaluate_brute(result_file, evaluate_file, limit=None):
+    from address_extract import clean_all_test
+
+    data_as_dict = read_data_excel(result_file,path_to_file, is_index=True)
+    origin_proccess_addresses = data_as_dict.get('address')
+    group_keys = ('street', 'ward', 'district', 'province')
+    extra_col_names = ('city_rate','all_rate','type','time')
+    col_names = ('no','address') + group_keys + extra_col_names
+
+    match_rate = []
+    match_rate_cleaned = []
+    to_save_dict = dict()
+    for c in col_names:
+        to_save_dict[c] = []
+
+    for no, addr in origin_proccess_addresses.items():
+        # print("Compare record {}".format(no + 1))
+        value_list = []
+        for k in group_keys:
+            cell = data_as_dict.get(k).get(no)
+            value_list.append(cell)
+        value = ' '.join(value_list)
+        if value_list[-1].lower() in ('no info','error'):
+            ratio = 0
+        else:
+            ratio = fuzz.ratio(addr, value)
+            ratio_cleaned = fuzz.ratio(clean_all_test(addr),clean_all_test(value))
+        match_rate.append(ratio)
+        match_rate_cleaned.append(ratio_cleaned)
+        for c in col_names:
+            to_save_dict[c].append(data_as_dict.get(c).get(no))
+        if no == limit:
+            break
+
+
+    # print(match_rate)
+    to_save_dict['match_rate']=match_rate
+    to_save_dict['match_rate_cleaned']=match_rate_cleaned
+
+    # print(to_save_dict)
+    if save_data_excel(to_save_dict, evaluate_file, path_to_file):
+        print("Beautiful too!")
+
+# Brute cases
+# save_file_name = 'test_result1_.xlsx'
+# read_file_and_extract_brute(read_file_name,save_file_name=save_file_name,limit=10000)
+# read_result_and_evaluate_brute(result_file=save_file_name,evaluate_file='eval1_.xlsx',limit=10000)
+
+def read_file_and_extract_slow(read_file_name, save_file_name, limit=None):
+    t0 = time.time()
+
+    data_as_dict = read_data_excel(read_file_name, path_to_file, is_index=True)
+    to_proccess_addresses = data_as_dict.get('address')
+
+    group_keys = ('street', 'ward', 'district', 'province')
+    extra_col_names = ('city_rate','all_rate','type','time')
+    col_names = ('no','address',) + group_keys + extra_col_names
+
+    # print(col_names)
+    to_save_dict = {}
+    for e in col_names:
+        to_save_dict[e] = []
+
+    for no, addr in to_proccess_addresses.items():
+        print("Processing record {}".format(no + 1))
+        # print(key_value_pairs)
+        t2 = time.time()
+        result = extractor.assumption_brute_force_search(address=addr, order=tuple(reversed(group_keys)))
+        # print(result)
+        t3 = time.time()
+        result['time'] = t3 - t2
+        for ek in extra_col_names:
+            to_save_dict[ek].append(result[ek])
+
+        to_save_dict['address'].append(addr)
+        to_save_dict['no'].append(no)
+        for k in group_keys:
+            if type(result) is dict:
+                value = result.get(k)
+                if value is not None:
+                    to_save_dict[k].append(value)
+                else:
+                    to_save_dict[k].append("no info")
+            else:
+                to_save_dict[k].append("error")
+
+        if no == limit:
+            break
+    if save_data_excel(to_save_dict, save_file_name, path_to_file):
+        print("Beautiful!")
+    t1 = time.time()
+    elapsed = t1 - t0
+    print("Total time elapsed: {}".format(elapsed))
+def read_result_and_evaluate_slow(result_file, evaluate_file, limit=None):
+    from address_extract import clean_all_test
+
+    data_as_dict = read_data_excel(result_file,path_to_file, is_index=True)
+    origin_proccess_addresses = data_as_dict.get('address')
+    group_keys = ('street', 'ward', 'district', 'province')
+    extra_col_names = ('city_rate','all_rate','type','time')
+    col_names = ('no','address') + group_keys + extra_col_names
+
+    match_rate = []
+    match_rate_cleaned = []
+    to_save_dict = dict()
+    for c in col_names:
+        to_save_dict[c] = []
+
+    for no, addr in origin_proccess_addresses.items():
+        # print("Compare record {}".format(no + 1))
+        value_list = []
+        for k in group_keys:
+            cell = data_as_dict.get(k).get(no)
+            value_list.append(cell)
+        value = ' '.join(value_list)
+        if value_list[-1].lower() in ('no info','error'):
+            ratio = 0
+        else:
+            ratio = fuzz.ratio(addr, value)
+            ratio_cleaned = fuzz.ratio(clean_all_test(addr),clean_all_test(value))
+        match_rate.append(ratio)
+        match_rate_cleaned.append(ratio_cleaned)
+        for c in col_names:
+            to_save_dict[c].append(data_as_dict.get(c).get(no))
+        if no == limit:
+            break
+
+
+    # print(match_rate)
+    to_save_dict['match_rate']=match_rate
+    to_save_dict['match_rate_cleaned']=match_rate_cleaned
+
+    # print(to_save_dict)
+    if save_data_excel(to_save_dict, evaluate_file, path_to_file):
+        print("Beautiful too!")
+
+# Worse cases
+save_file_name = 'test_result2_.xlsx'
+read_file_and_extract_slow(read_file_name,save_file_name=save_file_name,limit=10000)
+read_result_and_evaluate_slow(result_file=save_file_name,evaluate_file='eval2_.xlsx',limit=10000)
