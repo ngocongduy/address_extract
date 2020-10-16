@@ -1,4 +1,4 @@
-## Requirements/ Dependency
+## Requirements/ Dependencies
 
 1. unidecode: to remove Vietnamese accents
 2. fuzzywuzzy: for string approximation
@@ -10,7 +10,7 @@
 There some folders and files you may neet to look:
 1. data: containing files as json format. These file served as database for look-up and compare tasks.
     * "flat_divisions.json" and "nested_divisions.json": are used to make other files, these 02 files come from vietnam-provinces
-    * Have  look in this folder and code when using with your own data files
+    * Have look in this folder and code when using with your own data files
 2. address: some test data
 3. load_data.py: containing logics to make files and load data files
 4. evaluate.py: evaluating logics
