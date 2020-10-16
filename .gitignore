@@ -55,6 +55,8 @@ Thumbs.db
 .idea
 
 # evaluating result
-address
 .ipynb_checkpoints
 tests
+.json
+.csv
+

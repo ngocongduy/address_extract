@@ -361,9 +361,9 @@ def read_result_and_evaluate_brute(result_file, evaluate_file, limit=None):
         print("Beautiful too!")
 
 # Brute cases
-# save_file_name = 'test_result1_.xlsx'
+# save_file_name = 'test_result1_11.xlsx'
 # read_file_and_extract_brute(read_file_name,save_file_name=save_file_name,limit=10000)
-# read_result_and_evaluate_brute(result_file=save_file_name,evaluate_file='eval1_.xlsx',limit=10000)
+# read_result_and_evaluate_brute(result_file=save_file_name,evaluate_file='eval1_11.xlsx',limit=10000)
 
 def read_file_and_extract_slow(read_file_name, save_file_name, limit=None):
     t0 = time.time()
@@ -454,6 +454,6 @@ def read_result_and_evaluate_slow(result_file, evaluate_file, limit=None):
         print("Beautiful too!")
 
 # Worse cases
-save_file_name = 'test_result2_.xlsx'
-read_file_and_extract_slow(read_file_name,save_file_name=save_file_name,limit=10000)
-read_result_and_evaluate_slow(result_file=save_file_name,evaluate_file='eval2_.xlsx',limit=10000)
+# save_file_name = 'test_result2_.xlsx'
+# read_file_and_extract_slow(read_file_name,save_file_name=save_file_name,limit=10000)
+# read_result_and_evaluate_slow(result_file=save_file_name,evaluate_file='eval2_.xlsx',limit=10000)

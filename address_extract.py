@@ -153,11 +153,21 @@ from load_data import load_address_dict, load_cities_data_normalized, load_addre
 
 
 class AddressExtractor():
-    def __init__(self):
-        self.cities_data_normalized = load_cities_data_normalized()
-        self.address_dict_normalized = load_address_dict_normalized()
-        self.nested_address_dict_normalized = load_address_dict()
-
+    def __init__(self, cities_data_normalized=None, address_dict_normalized=None, nested_address_dict_normalized=None):
+        """
+        Initilized backed data used for the works, if using your own, please have a look on data files and code
+        :param cities_data_normalized: json file containing lists of provinces, districts and wards used as indexer for address_dict_normalized
+        :param address_dict_normalized: json file containing flat records. Each is a combinations of possible (province, district, ward)
+        :param nested_address_dict_normalized: json containing tree-liked data: first level is province -> district -> ward
+        """
+        if None in (cities_data_normalized,address_dict_normalized,nested_address_dict_normalized):
+            self.cities_data_normalized = load_cities_data_normalized()
+            self.address_dict_normalized = load_address_dict_normalized()
+            self.nested_address_dict_normalized = load_address_dict()
+        else:
+            self.cities_data_normalized = cities_data_normalized
+            self.address_dict_normalized = address_dict_normalized
+            self.nested_address_dict_normalized = nested_address_dict_normalized
     def assumption_search(self, address: str, province_rate=70, extra_rate=65):
         """
         Given a list of all combinations (province,district,ward)
@@ -202,12 +212,6 @@ class AddressExtractor():
             all_in_one_extra_cleaned = clean_all_extra(','.join(all_in_one))
             reduce_length_with_magic_number(all_in_one_cleaned)
             reduce_length_with_magic_number(all_in_one_extra_cleaned)
-
-        # cleaned_list, cleaned_list_extra = [], []
-        # for e in self.address_dict_normalized:
-        #     cleaned_list.append(e.get('normalized_address'))
-        #     cleaned_list_extra.append(e.get('cleaned_address'))
-
         cleaned_list = self.address_dict_normalized.get('cleaned_list')
         cleaned_list_extra = self.address_dict_normalized.get('normalized_list')
 
@@ -360,13 +364,14 @@ class AddressExtractor():
             print("Can handle 1 to 4 groups!")
             return None
 
-    def group_search(self, search_term_in_address: str, group_name: str, top_n=1):
+    def group_search(self, search_term_in_address: str, group_name: str, top_n=1, custom_list=None):
         """
         Given lists containing all provinces/cities, all districts, all wards
         Find n best matched element in those list, searching is directed by group_name
         :param search_term_in_address: expected a part of address such as ward/ district/ province/city
         :param group_name: expected one of  ('wards', 'districts', 'provinces')
         :param top_n: n best matched elements, 1 <= n <= 10
+        :param custom_list: a list to look up instead of default list
         :return: a list containing n best matched elements, each one is a object in
         """
         allow_group_names = ('wards', 'districts', 'provinces')
@@ -376,9 +381,20 @@ class AddressExtractor():
             print('Group names allowed are: {}'.format(str(allow_group_names)))
             return final_result
         normalized_key = group_name+'_normalized'
-        cleaned_list = self.cities_data_normalized.get(normalized_key)
-        list_to_look = self.cities_data_normalized.get(group_name)
-        # print(cleaned_list)
+        if custom_list is None:
+            # Use default
+            cleaned_list = self.cities_data_normalized.get(normalized_key)
+            list_to_look = self.cities_data_normalized.get(group_name)
+        else:
+            if group_name == 'provinces':
+                cleaned_list = [clean(e, is_city=True) for e in custom_list]
+            elif group_name == 'districts':
+                cleaned_list = [clean(e, is_district=True) for e in custom_list]
+            elif group_name == 'wards':
+                cleaned_list = [clean(e, is_ward=True) for e in custom_list]
+            else:
+                cleaned_list = None
+            list_to_look = custom_list
         if cleaned_list is None or list_to_look is None:
             print('Load data looks failed!')
             return final_result
@@ -417,8 +433,11 @@ class AddressExtractor():
                             except:
                                 index = -1
                             if index >= 0:
-                                for k in list_to_look[index].keys():
-                                    result[k] = list_to_look[index].get(k)
+                                if type(list_to_look[index]) is dict:
+                                    for k in list_to_look[index].keys():
+                                        result[k] = list_to_look[index].get(k)
+                                else:
+                                    result['original_value'] = list_to_look[index]
                             # print(result)
                         final_result.append(result)
                         # print(final_result)
