@@ -1,29 +1,21 @@
 import json
-from address_extract import clean_all_test
-from os import getcwd, path
-NESTED_DIVISIONS_JSON_PATH = path.join(getcwd(), "data", "nested-divisions.json")
-FLAT_DIVISIONS_JSON_PATH = path.join(getcwd(), "data", "flat-divisions.json")
+from os import path
+from pathlib import Path
+data_path = Path(__file__).parent / 'data'
+
+NESTED_DIVISIONS_JSON_PATH = path.join(data_path, "nested-divisions.json")
+FLAT_DIVISIONS_JSON_PATH = path.join(data_path, "flat-divisions.json")
+
+
 def load_address_dict():
     print(NESTED_DIVISIONS_JSON_PATH)
     with open(NESTED_DIVISIONS_JSON_PATH, encoding="utf8") as f:
         provinces = json.load(f)
     return provinces
 
-def make_nested_cities_normalized():
-    address_dict = load_address_dict()
-
-    nested_cities = {'provinces':[],'districts':[]}
-
-    for i in range(len(address_dict)):
-        address_dict[i]['index'] = i
-        district_node = address_dict[i].get('districts')
-        for j in range(len(district_node)):
-            pass
-
 
 def make_normalized_data():
-    from collections import Counter
-    from address_extract import clean, clean_all_test
+    from utils import clean, clean_all_test
     with open(FLAT_DIVISIONS_JSON_PATH, encoding="utf8") as f:
         combinations = json.load(f)
     print(len(combinations))
@@ -67,25 +59,23 @@ def make_normalized_data():
         to_save_dict['normalized_list'].append(all_in_one_cleaned)
 
     import os
-    path = os.getcwd()
     file_name = 'address_dict_normalized.json'
-    file_path = os.path.join(path,'data',file_name)
+    file_path = os.path.join(data_path,file_name)
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(to_save_dict, f, ensure_ascii=False, indent=4)
 # make_normalized_data()
 
 def load_address_dict_normalized():
     import os
-    path = os.getcwd()
     file_name = 'address_dict_normalized.json'
-    file_path = os.path.join(path,'data',file_name)
+    file_path = os.path.join(data_path,file_name)
     with open(file_path, encoding="utf8") as f:
         data = json.load(f)
     return data
 
 def make_cities_data_normalized():
     from collections import Counter
-    from address_extract import clean
+    from .utils import clean, clean_all_test
     with open(FLAT_DIVISIONS_JSON_PATH, encoding="utf8") as f:
         combinations = json.load(f)
     print(len(combinations))
@@ -178,9 +168,8 @@ def make_cities_data_normalized():
     # print(city_dict['provinces'])
 
     import os
-    path = os.getcwd()
     file_name = 'cities_normalized.json'
-    file_path = os.path.join(path,'data',file_name)
+    file_path = os.path.join(data_path,file_name)
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(city_dict, f, ensure_ascii=False, indent=4)
 
@@ -188,9 +177,8 @@ def make_cities_data_normalized():
 
 def load_cities_data_normalized():
     import os
-    path = os.getcwd()
     file_name = 'cities_normalized.json'
-    file_path = os.path.join(path,'data',file_name)
+    file_path = os.path.join(data_path,file_name)
     with open(file_path, encoding="utf8") as f:
         data = json.load(f)
     return data
