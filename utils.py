@@ -2,6 +2,31 @@ import re
 from unidecode import unidecode
 
 
+def extract_group(add: str, group_keys: tuple):
+    groups = add.split(',')
+    for i in range(len(groups)):
+        value = groups[i].strip()
+        if len(value) > 0:
+            groups[i] = value
+        else:
+            groups[i] = None
+    # Remove None
+    groups = [e for e in groups if e]
+    # If more than 4 elements then merged all head elements into one
+    if len(groups) > 4:
+        boundary = len(groups) - 3
+        all_head_in_one = ' '.join(groups[0:boundary])
+        groups = [all_head_in_one] + groups[boundary:]
+        # print(groups)
+        # print(len(groups))
+
+    # Mapping values from address groups, address groups is assumpted to be smaller than groups keys
+    result = dict()
+    for i in range(len(groups)):
+        result[group_keys[i]] = groups[i]
+    return result
+
+
 def add_zero_for_one_digit_number(num_as_string: str):
     # Add zero
     if len(num_as_string) > 2:
@@ -118,5 +143,21 @@ def clean_all_test(address: str):
         result = remove_leading_zero_for_one_digit_number(result)
         result = result.lower()
         return only_alphanumeric(result)
+    except Exception as e:
+        print(e)
+
+
+def clean_alphanumeric_delimeter_upper(address: str):
+    def only_alphanumeric(address: str):
+        return re.sub(r'[^A-Za-z0-9,\s]', '', address, )
+
+    def remove_vietnam(address: str):
+        return re.sub(r'(vn\s)|(\svn)|(viet\snam)|(\svietnam)|(vietnam\s)', '', address,
+                      flags=re.IGNORECASE)
+
+    try:
+        result = unidecode(address)
+        result = remove_vietnam(result)
+        return only_alphanumeric(result).upper()
     except Exception as e:
         print(e)

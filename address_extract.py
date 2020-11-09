@@ -2,33 +2,10 @@ from itertools import permutations
 from fuzzywuzzy import process
 from .utils import *
 
-def extract_group(add: str, group_keys: tuple):
-    groups = add.split(',')
-    for i in range(len(groups)):
-        value = groups[i].strip()
-        if len(value) > 0:
-            groups[i] = value
-        else:
-            groups[i] = None
-    # Remove None
-    groups = [e for e in groups if e]
-    # If more than 4 elements then merged all head elements into one
-    if len(groups) > 4:
-        boundary = len(groups) - 3
-        all_head_in_one = ' '.join(groups[0:boundary])
-        groups = [all_head_in_one] + groups[boundary:]
-        # print(groups)
-        # print(len(groups))
 
-    # Mapping values from address groups, address groups is assumpted to be smaller than groups keys
-    result = dict()
-    for i in range(len(groups)):
-        result[group_keys[i]] = groups[i]
-    return result
 
 
 from .load_data import load_address_dict, load_cities_data_normalized, load_address_dict_normalized
-
 
 class AddressExtractor():
     def __init__(self, cities_data_normalized=None, address_dict_normalized=None, nested_address_dict_normalized=None):
@@ -46,7 +23,7 @@ class AddressExtractor():
             self.cities_data_normalized = cities_data_normalized
             self.address_dict_normalized = address_dict_normalized
             self.nested_address_dict_normalized = nested_address_dict_normalized
-    def assumption_search(self, address: str, province_rate=70, extra_rate=65):
+    def assumption_search(self, address: str, province_rate=70, extra_rate=65, key_value_pairs=None):
         """
         Given a list of all combinations (province,district,ward)
         Try to find the province first, then jump section of the list for that province find best match, use all address string to search
@@ -69,12 +46,13 @@ class AddressExtractor():
         result = {}
         for k in order:
             result[k] = ''
-
-        key_value_pairs = extract_group(address, order)
+        if type(key_value_pairs) is not dict:
+            key_value_pairs = extract_group(address, order)
 
         all_in_one = [i for i in key_value_pairs.values()]
 
         no_of_group = len(all_in_one)
+        # assume that province is the last element
         province = ''
         for i in range(4):
             if no_of_group - 1 == i:
@@ -82,14 +60,14 @@ class AddressExtractor():
         if no_of_group == 1:
             all_in_one_cleaned = clean_all_in_one(all_in_one[0])
             all_in_one_extra_cleaned = clean_all_extra(all_in_one[0])
-            all_in_one_cleaned = reduce_length_with_magic_number(all_in_one_cleaned)
-            all_in_one_extra_cleaned = reduce_length_with_magic_number(all_in_one_extra_cleaned)
         else:
-            all_in_one[0] = ''
+            # all_in_one[0] = ''
             all_in_one_cleaned = clean_all_in_one(','.join(all_in_one))
             all_in_one_extra_cleaned = clean_all_extra(','.join(all_in_one))
-            all_in_one_cleaned = reduce_length_with_magic_number(all_in_one_cleaned)
-            all_in_one_extra_cleaned = reduce_length_with_magic_number(all_in_one_extra_cleaned)
+
+        all_in_one_cleaned = reduce_length_with_magic_number(all_in_one_cleaned)
+        all_in_one_extra_cleaned = reduce_length_with_magic_number(all_in_one_extra_cleaned)
+
         cleaned_list = self.address_dict_normalized.get('cleaned_list')
         cleaned_list_extra = self.address_dict_normalized.get('normalized_list')
 
@@ -106,11 +84,10 @@ class AddressExtractor():
         start = province_node.get('start_index')
         end = province_node.get('end_index')
         # print(province_node)
-        if ratio >= province_rate and start > 0 and end > 0:
+        if ratio >= province_rate and start >= 0 and end >= 0:
             match, rate = process.extractOne(all_in_one_cleaned, cleaned_list[start:end])
             # Add this check and look up will slow down but hope to increase accuracy
             if rate < extra_rate:
-
                 other_match, rate = process.extractOne(all_in_one_extra_cleaned, cleaned_list_extra[start:end])
                 index = cleaned_list_extra[start:end].index(other_match)
                 index += start
@@ -134,7 +111,7 @@ class AddressExtractor():
         return result
 
     def assumption_brute_force_search(self, address: str, rate_province=85, rate_district=85, rate_ward=65,
-                                      order=('street', 'ward', 'district', 'province')):
+                                      order=('street', 'ward', 'district', 'province'), key_value_pairs=None):
         """
         Given a full address as string, try to return 4 part: street, ward, district, province/city
         Givan a list of dictionary, each dictionary is a province/city and all of its districts and wards
@@ -165,12 +142,12 @@ class AddressExtractor():
         result['city_rate'] = 0
         result['all_rate'] = 0
         result['type'] = 'brute'
-
-        key_value_pairs = extract_group(address, order)
+        if type(key_value_pairs) is not dict:
+            key_value_pairs = extract_group(address, order)
         no_of_group = len(key_value_pairs.keys())
 
         if no_of_group >= 1 and no_of_group < 4:
-            return self.assumption_search(address)
+            return self.assumption_search(address, key_value_pairs=key_value_pairs)
         elif no_of_group == 4:
             possibilities = permutations(order, len(order))
             # n!/(n-k)! , k = 4 => 24 permutations
@@ -237,12 +214,12 @@ class AddressExtractor():
                             return result
 
             # Reach this far means not found try another method
-            return self.assumption_search(address)
+            return self.assumption_search(address, key_value_pairs=key_value_pairs)
         else:
             print("Can handle 1 to 4 groups!")
             return None
 
-    def group_search(self, search_term_in_address: str, group_name: str, top_n=1, custom_list=None):
+    def group_search(self, search_term_in_address: str, group_name: str, top_n=1, custom_list=None, reduce_district=True):
         """
         Given lists containing all provinces/cities, all districts, all wards
         Find n best matched element in those list, searching is directed by group_name
@@ -280,19 +257,21 @@ class AddressExtractor():
         if group_name == 'provinces':
             to_look_value = clean(search_term_in_address, is_city=True)
             # Use this trick for province to work with assumption search
-            magic_number = 13
-            if len(to_look_value) >= magic_number:
-                to_look_value = to_look_value[-magic_number:]
+            # reduce length of to_look_value after cleaned for better matched
+            if reduce_district:
+                magic_number = 13
+                if len(to_look_value) >= magic_number:
+                    to_look_value = to_look_value[-magic_number:]
         elif group_name == 'districts':
             to_look_value = clean(search_term_in_address, is_district=True)
-            if len(to_look_value) > 0:
-                if to_look_value[0] in ['1','2','3','4','5','6','7','8','9']:
-                    to_look_value = clean_all_test(search_term_in_address)
+            # if len(to_look_value) > 0:
+            #     if to_look_value[0] in ['1','2','3','4','5','6','7','8','9']:
+            #         to_look_value = clean_all_test(search_term_in_address)
         elif group_name == 'wards':
             to_look_value = clean(search_term_in_address, is_ward=True)
-            if len(to_look_value) > 0:
-                if to_look_value[0] in ['1','2','3','4','5','6','7','8','9']:
-                    to_look_value = clean_all_test(search_term_in_address)
+            # if len(to_look_value) > 0:
+            #     if to_look_value[0] in ['1','2','3','4','5','6','7','8','9']:
+            #         to_look_value = clean_all_test(search_term_in_address)
         if cleaned_list is not None and len(to_look_value) > 0:
             if 1 <= top_n <= 10:
                 result_list = process.extractBests(query=to_look_value,choices= cleaned_list,limit= top_n)

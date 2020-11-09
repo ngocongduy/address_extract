@@ -8,7 +8,7 @@ FLAT_DIVISIONS_JSON_PATH = path.join(data_path, "flat-divisions.json")
 
 
 def load_address_dict():
-    print(NESTED_DIVISIONS_JSON_PATH)
+    # print(NESTED_DIVISIONS_JSON_PATH)
     with open(NESTED_DIVISIONS_JSON_PATH, encoding="utf8") as f:
         provinces = json.load(f)
     return provinces
