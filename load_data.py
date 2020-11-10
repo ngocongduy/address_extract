@@ -7,6 +7,15 @@ NESTED_DIVISIONS_JSON_PATH = path.join(data_path, "nested-divisions.json")
 FLAT_DIVISIONS_JSON_PATH = path.join(data_path, "flat-divisions.json")
 
 
+def load_word_bag():
+    import os
+    file_name = 'word_bag.json'
+    file_path = os.path.join(data_path,file_name)
+    with open(file_path, encoding="utf8") as f:
+        data = json.load(f)
+    return data
+
+
 def load_address_dict():
     # print(NESTED_DIVISIONS_JSON_PATH)
     with open(NESTED_DIVISIONS_JSON_PATH, encoding="utf8") as f:
@@ -15,7 +24,7 @@ def load_address_dict():
 
 
 def make_normalized_data():
-    from utils import clean, clean_all_test
+    from address_extract.utils import clean, clean_all_test
     with open(FLAT_DIVISIONS_JSON_PATH, encoding="utf8") as f:
         combinations = json.load(f)
     print(len(combinations))

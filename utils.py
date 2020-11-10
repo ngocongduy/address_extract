@@ -2,6 +2,31 @@ import re
 from unidecode import unidecode
 
 
+def clean_alphanumeric_space(address: str):
+    def only_alphanumeric_space(address: str):
+        return re.sub(r'[^A-Za-z0-9,\s]', '', address)
+    def _comma_to_space(address: str):
+        return re.sub(',', ' ', address)
+    try:
+        result = unidecode(address)
+        result = _comma_to_space(result)
+        return only_alphanumeric_space(result).lower()
+    except Exception as e:
+        print(e)
+def clean_and_split_into_words(addr: str):
+    addr = clean_alphanumeric_space(addr)
+    words = addr.split(' ')
+    for i in range(len(words)):
+        value = words[i].strip()
+    if len(value) > 0:
+        words[i] = value
+    else:
+        words[i] = None
+    # Remove None
+    result = [e for e in words if e]
+    return result
+
+
 def extract_group(add: str, group_keys: tuple):
     groups = add.split(',')
     for i in range(len(groups)):

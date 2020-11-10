@@ -2,10 +2,8 @@ from itertools import permutations
 from fuzzywuzzy import process
 from .utils import *
 
+from .load_data import load_address_dict, load_cities_data_normalized, load_address_dict_normalized, load_word_bag
 
-
-
-from .load_data import load_address_dict, load_cities_data_normalized, load_address_dict_normalized
 
 class AddressExtractor():
     def __init__(self, cities_data_normalized=None, address_dict_normalized=None, nested_address_dict_normalized=None):
@@ -15,7 +13,7 @@ class AddressExtractor():
         :param address_dict_normalized: json file containing flat records. Each is a combinations of possible (province, district, ward)
         :param nested_address_dict_normalized: json containing tree-liked data: first level is province -> district -> ward
         """
-        if None in (cities_data_normalized,address_dict_normalized,nested_address_dict_normalized):
+        if None in (cities_data_normalized, address_dict_normalized, nested_address_dict_normalized):
             self.cities_data_normalized = load_cities_data_normalized()
             self.address_dict_normalized = load_address_dict_normalized()
             self.nested_address_dict_normalized = load_address_dict()
@@ -23,92 +21,9 @@ class AddressExtractor():
             self.cities_data_normalized = cities_data_normalized
             self.address_dict_normalized = address_dict_normalized
             self.nested_address_dict_normalized = nested_address_dict_normalized
-    def assumption_search(self, address: str, province_rate=70, extra_rate=65, key_value_pairs=None):
-        """
-        Given a list of all combinations (province,district,ward)
-        Try to find the province first, then jump section of the list for that province find best match, use all address string to search
-        Street is assumpted to be the first part of address string.
-        If rate for province match < province_rate, try to search in the whole list
-        If the overall rate < extra_rate, try a different cleaning method and re-search
-        :param address: address to extract in to 4 part street, ward, district, city/province
-        :param province_rate: match rate for province
-        :param extra_rate: limit to do another try
-        :return: one best match value as dict in the combinations list
-        """
-        def reduce_length_with_magic_number(number_as_string: str, magic_number=34):
-            if len(number_as_string) > magic_number:
-                return number_as_string[-magic_number:]
-            return number_as_string
-
-        # Assumpted a address ordered with orders:
-        order = ('street', 'ward', 'district', 'province')
-
-        result = {}
-        for k in order:
-            result[k] = ''
-        if type(key_value_pairs) is not dict:
-            key_value_pairs = extract_group(address, order)
-
-        all_in_one = [i for i in key_value_pairs.values()]
-
-        no_of_group = len(all_in_one)
-        # assume that province is the last element
-        province = ''
-        for i in range(4):
-            if no_of_group - 1 == i:
-                province = all_in_one[i]
-        if no_of_group == 1:
-            all_in_one_cleaned = clean_all_in_one(all_in_one[0])
-            all_in_one_extra_cleaned = clean_all_extra(all_in_one[0])
-        else:
-            # all_in_one[0] = ''
-            all_in_one_cleaned = clean_all_in_one(','.join(all_in_one))
-            all_in_one_extra_cleaned = clean_all_extra(','.join(all_in_one))
-
-        all_in_one_cleaned = reduce_length_with_magic_number(all_in_one_cleaned)
-        all_in_one_extra_cleaned = reduce_length_with_magic_number(all_in_one_extra_cleaned)
-
-        cleaned_list = self.address_dict_normalized.get('cleaned_list')
-        cleaned_list_extra = self.address_dict_normalized.get('normalized_list')
-
-        if cleaned_list is None or len(all_in_one_cleaned) < 1:
-            return None
-
-        province_node = self.group_search(search_term_in_address=province, group_name='provinces')
-        if province_node is not None:
-            province_node = province_node[0]
-        else:
-            return None
-        value = province_node.get('value')
-        ratio = province_node.get('rate')
-        start = province_node.get('start_index')
-        end = province_node.get('end_index')
-        # print(province_node)
-        if ratio >= province_rate and start >= 0 and end >= 0:
-            match, rate = process.extractOne(all_in_one_cleaned, cleaned_list[start:end])
-            # Add this check and look up will slow down but hope to increase accuracy
-            if rate < extra_rate:
-                other_match, rate = process.extractOne(all_in_one_extra_cleaned, cleaned_list_extra[start:end])
-                index = cleaned_list_extra[start:end].index(other_match)
-                index += start
-                result['type'] = 'medium'
-            else:
-                index = cleaned_list[start:end].index(match)
-                index += start
-                result['type'] = 'fast'
-        else:
-            match, rate = process.extractOne(all_in_one_cleaned, cleaned_list)
-            index = cleaned_list.index(match)
-            result['type'] = 'slow'
-
-        original_list = self.address_dict_normalized.get('original_list')
-        result['street'] = key_value_pairs['street']
-        result['ward'] = original_list[index].get('ward_name')
-        result['district'] = original_list[index].get('district_name')
-        result['province'] = original_list[index].get('province_name')
-        result['city_rate'] = ratio
-        result['all_rate'] = rate
-        return result
+        word_dict = load_word_bag()
+        self.word_bag = word_dict.get('word_bag')
+        self.hot_words = word_dict.get('hot_words')
 
     def assumption_brute_force_search(self, address: str, rate_province=85, rate_district=85, rate_ward=65,
                                       order=('street', 'ward', 'district', 'province'), key_value_pairs=None):
@@ -219,7 +134,8 @@ class AddressExtractor():
             print("Can handle 1 to 4 groups!")
             return None
 
-    def group_search(self, search_term_in_address: str, group_name: str, top_n=1, custom_list=None, reduce_district=True):
+    def group_search(self, search_term_in_address: str, group_name: str, top_n=1, custom_list=None,
+                     reduce_district=True):
         """
         Given lists containing all provinces/cities, all districts, all wards
         Find n best matched element in those list, searching is directed by group_name
@@ -235,7 +151,7 @@ class AddressExtractor():
         if group_name not in allow_group_names:
             print('Group names allowed are: {}'.format(str(allow_group_names)))
             return final_result
-        normalized_key = group_name+'_normalized'
+        normalized_key = group_name + '_normalized'
         if custom_list is None:
             # Use default
             cleaned_list = self.cities_data_normalized.get(normalized_key)
@@ -264,17 +180,11 @@ class AddressExtractor():
                     to_look_value = to_look_value[-magic_number:]
         elif group_name == 'districts':
             to_look_value = clean(search_term_in_address, is_district=True)
-            # if len(to_look_value) > 0:
-            #     if to_look_value[0] in ['1','2','3','4','5','6','7','8','9']:
-            #         to_look_value = clean_all_test(search_term_in_address)
         elif group_name == 'wards':
             to_look_value = clean(search_term_in_address, is_ward=True)
-            # if len(to_look_value) > 0:
-            #     if to_look_value[0] in ['1','2','3','4','5','6','7','8','9']:
-            #         to_look_value = clean_all_test(search_term_in_address)
         if cleaned_list is not None and len(to_look_value) > 0:
             if 1 <= top_n <= 10:
-                result_list = process.extractBests(query=to_look_value,choices= cleaned_list,limit= top_n)
+                result_list = process.extractBests(query=to_look_value, choices=cleaned_list, limit=top_n)
                 final_result = []
                 try:
                     for e in result_list:
@@ -305,7 +215,220 @@ class AddressExtractor():
                 print('Only support top 1 - 10 element')
         return final_result
 
+    # def assumption_search(self, address: str, province_rate=70, extra_rate=65, key_value_pairs=None):
+    #     """
+    #     Given a list of all combinations (province,district,ward)
+    #     Try to find the province first, then jump section of the list for that province find best match, use all address string to search
+    #     Street is assumpted to be the first part of address string.
+    #     If rate for province match < province_rate, try to search in the whole list
+    #     If the overall rate < extra_rate, try a different cleaning method and re-search
+    #     :param address: address to extract in to 4 part street, ward, district, city/province
+    #     :param province_rate: match rate for province
+    #     :param extra_rate: limit to do another try
+    #     :return: one best match value as dict in the combinations list
+    #     """
+    #
+    #     def reduce_length_with_magic_number(number_as_string: str, magic_number=34):
+    #         if len(number_as_string) > magic_number:
+    #             return number_as_string[-magic_number:]
+    #         return number_as_string
+    #
+    #     # Assumpted a address ordered with orders:
+    #     order = ('street', 'ward', 'district', 'province')
+    #
+    #     result = {}
+    #     for k in order:
+    #         result[k] = ''
+    #     if type(key_value_pairs) is not dict:
+    #         key_value_pairs = extract_group(address, order)
+    #
+    #     all_in_one = [i for i in key_value_pairs.values()]
+    #
+    #     no_of_group = len(all_in_one)
+    #     # assume that province is the last element
+    #     province = ''
+    #     for i in range(4):
+    #         if no_of_group - 1 == i:
+    #             province = all_in_one[i]
+    #     if no_of_group == 1:
+    #         all_in_one_cleaned = clean_all_in_one(all_in_one[0])
+    #         all_in_one_extra_cleaned = clean_all_extra(all_in_one[0])
+    #     else:
+    #         all_in_one[0] = ''
+    #         all_in_one_cleaned = clean_all_in_one(','.join(all_in_one))
+    #         all_in_one_extra_cleaned = clean_all_extra(','.join(all_in_one))
+    #
+    #     all_in_one_cleaned = reduce_length_with_magic_number(all_in_one_cleaned)
+    #     all_in_one_extra_cleaned = reduce_length_with_magic_number(all_in_one_extra_cleaned)
+    #
+    #     cleaned_list = self.address_dict_normalized.get('cleaned_list')
+    #     cleaned_list_extra = self.address_dict_normalized.get('normalized_list')
+    #
+    #     if cleaned_list is None or len(all_in_one_cleaned) < 1:
+    #         return None
+    #
+    #     province_node = self.group_search(search_term_in_address=province, group_name='provinces')
+    #     if province_node is not None:
+    #         province_node = province_node[0]
+    #     else:
+    #         return None
+    #     value = province_node.get('value')
+    #     ratio = province_node.get('rate')
+    #     start = province_node.get('start_index')
+    #     end = province_node.get('end_index')
+    #     # print(province_node)
+    #     if ratio >= province_rate and start >= 0 and end >= 0:
+    #         match, rate = process.extractOne(all_in_one_cleaned, cleaned_list[start:end])
+    #         # Add this check and look up will slow down but hope to increase accuracy
+    #         if rate < extra_rate:
+    #             other_match, rate = process.extractOne(all_in_one_extra_cleaned, cleaned_list_extra[start:end])
+    #             index = cleaned_list_extra[start:end].index(other_match)
+    #             index += start
+    #             result['type'] = 'medium'
+    #         else:
+    #             index = cleaned_list[start:end].index(match)
+    #             index += start
+    #             result['type'] = 'fast'
+    #     else:
+    #         match, rate = process.extractOne(all_in_one_cleaned, cleaned_list)
+    #         index = cleaned_list.index(match)
+    #         result['type'] = 'slow'
+    #
+    #     original_list = self.address_dict_normalized.get('original_list')
+    #     result['street'] = key_value_pairs['street']
+    #     result['ward'] = original_list[index].get('ward_name')
+    #     result['district'] = original_list[index].get('district_name')
+    #     result['province'] = original_list[index].get('province_name')
+    #     result['city_rate'] = ratio
+    #     result['all_rate'] = rate
+    #     return result
 
+    def assumption_search(self, address: str, province_rate=90, extra_rate=65, key_value_pairs=None,
+                              threshold_limit=3):
+        def reduce_length_with_magic_number(number_as_string: str, magic_number=34):
+            if len(number_as_string) > magic_number:
+                return number_as_string[-magic_number:]
+            return number_as_string
 
+        # Assumpted a address ordered with orders:
+        order = ('street', 'ward', 'district', 'province')
 
+        result = {}
+        for k in order:
+            result[k] = ''
+        if type(key_value_pairs) is not dict:
+            key_value_pairs = extract_group(address, order)
+        # all_in_one = [i for i in key_value_pairs.values()]
+        all_in_one = []
+        for k in order:
+            value = key_value_pairs.get(k)
+            if value is not None:
+                all_in_one.append(value)
 
+        no_of_group = len(all_in_one)
+        # assume that province is the last element
+        province = ''
+        for i in range(4):
+            if no_of_group - 1 == i:
+                province = all_in_one[i]
+        if no_of_group == 1:
+            all_in_one_cleaned = clean_all_in_one(all_in_one[0])
+            all_in_one_extra_cleaned = clean_all_extra(all_in_one[0])
+        else:
+            all_in_one[0] = ''
+            all_in_one_cleaned = clean_all_in_one(','.join(all_in_one))
+            all_in_one_extra_cleaned = clean_all_extra(','.join(all_in_one))
+
+        all_in_one_cleaned = reduce_length_with_magic_number(all_in_one_cleaned)
+        all_in_one_extra_cleaned = reduce_length_with_magic_number(all_in_one_extra_cleaned)
+
+        cleaned_list = self.address_dict_normalized.get('cleaned_list')
+        cleaned_list_extra = self.address_dict_normalized.get('normalized_list')
+
+        if cleaned_list is None or len(all_in_one_cleaned) < 1:
+            return None
+
+        province_node = self.group_search(search_term_in_address=province, group_name='provinces')
+        if province_node is not None:
+            province_node = province_node[0]
+        else:
+            return None
+        value = province_node.get('value')
+        ratio = province_node.get('rate')
+        start = province_node.get('start_index')
+        end = province_node.get('end_index')
+        # print(province_node)
+        if ratio >= province_rate and start >= 0 and end >= 0:
+            match, rate = process.extractOne(all_in_one_cleaned, cleaned_list[start:end])
+            # Add this check and look up will slow down but hope to increase accuracy
+            if rate < extra_rate:
+                other_match, rate = process.extractOne(all_in_one_extra_cleaned, cleaned_list_extra[start:end])
+                index = cleaned_list_extra[start:end].index(other_match)
+                index += start
+                result['type'] = 'medium'
+            else:
+                index = cleaned_list[start:end].index(match)
+                index += start
+                result['type'] = 'fast'
+        else:
+            threshold = -1
+            if threshold_limit > 0:
+                threshold = 0
+                words = set(clean_and_split_into_words(address))
+                # print(words)
+                index_set = set()
+                for word in words:
+                    # print(word)
+                    # print(self.hot_words)
+                    index_list = self.word_bag.get(word)
+                    if index_list is not None:
+                        threshold += 1
+                        index_set.update(index_list)
+                    # if word in self.hot_words:
+                    #     threshold = 0
+                    #     break
+                    # else:
+                    #     index_list = self.word_bag.get(word)
+                    #     if index_list is not None:
+                    #         threshold += 1
+                    #         index_set.update(index_list)
+                # print("Threshold value {}".format(threshold))
+                # print("Index length {}".format(len(index_set)))
+
+            ###
+            if threshold >= threshold_limit:
+                promise_list = [cleaned_list_extra[i] for i in index_set]
+                match, rate = process.extractOne(all_in_one_extra_cleaned, promise_list)
+                index = -1
+                # print(all_in_one_extra_cleaned)
+                # print(match)
+                # print(rate)
+                try:
+                    index = int(match.split('_')[-1])
+                except Exception as e:
+                    # print(e)
+                    pass
+                if index >= 0:
+                    result['type'] = "trick"
+                    original_list = self.address_dict_normalized.get('original_list')
+                    result['street'] = key_value_pairs['street']
+                    result['ward'] = original_list[index].get('ward_name')
+                    result['district'] = original_list[index].get('district_name')
+                    result['province'] = original_list[index].get('province_name')
+                    result['city_rate'] = ratio
+                    result['all_rate'] = rate
+                    return result
+            ###
+            else:
+                match, rate = process.extractOne(all_in_one_cleaned, cleaned_list)
+                index = cleaned_list.index(match)
+                result['type'] = 'slow'
+
+        original_list = self.address_dict_normalized.get('original_list')
+        result['street'] = key_value_pairs['street']
+        result['ward'] = original_list[index].get('ward_name')
+        result['district'] = original_list[index].get('district_name')
+        result['province'] = original_list[index].get('province_name')
+        result['city_rate'] = ratio
+        result['all_rate'] = rate
+        return result
