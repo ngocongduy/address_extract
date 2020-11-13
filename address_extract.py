@@ -351,7 +351,7 @@ class AddressExtractor():
                     # result['all_rate'] = rate
                     # return result
             ###
-            elif len(all_in_one_cleaned > 3):
+            elif len(all_in_one_cleaned) > 3:
                 match, rate = process.extractOne(all_in_one_cleaned, cleaned_list)
                 index = cleaned_list.index(match)
                 result['type'] = 'slow'
