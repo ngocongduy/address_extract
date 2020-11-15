@@ -331,46 +331,39 @@ class AddressExtractor():
                 promise_list = [cleaned_list_extra[i] for i in index_set]
                 match, rate = process.extractOne(all_in_one_extra_cleaned, promise_list)
                 index = -1
-                # print(all_in_one_extra_cleaned)
-                # print(match)
-                # print(rate)
                 try:
                     index = int(match.split('_')[-1])
-                except Exception as e:
-                    # print(e)
+                except:
                     pass
                 if index >= 0:
                     result['type'] = "trick"
                     result['count'] = len(promise_list)
-                    # original_list = self.address_dict_normalized.get('original_list')
-                    # result['street'] = key_value_pairs['street']
-                    # result['ward'] = original_list[index].get('ward_name')
-                    # result['district'] = original_list[index].get('district_name')
-                    # result['province'] = original_list[index].get('province_name')
-                    # result['city_rate'] = ratio
-                    # result['all_rate'] = rate
-                    # return result
             ###
             elif len(all_in_one_cleaned) > 3:
                 match, rate = process.extractOne(all_in_one_cleaned, cleaned_list)
                 index = cleaned_list.index(match)
                 result['type'] = 'slow'
             else:
-                result['street'] = ""
-                result['ward'] = ""
-                result['district'] = ""
-                result['province'] = ""
+                for k in order:
+                    result[k] = ""
                 result['city_rate'] = 0.01
                 result['all_rate'] = 0.01
                 result['type'] = 'short_address'
                 result['count'] = 100
+        if rate >= extra_rate:
+            original_list = self.address_dict_normalized.get('original_list')
+            result['street'] = key_value_pairs['street']
+            result['ward'] = original_list[index].get('ward_name')
+            result['district'] = original_list[index].get('district_name')
+            result['province'] = original_list[index].get('province_name')
+            result['city_rate'] = ratio
+            result['all_rate'] = rate
+        else:
+            for k in order:
+                result[k] = ""
+            result['city_rate'] = ratio
+            result['all_rate'] = rate
+            result['type'] = 'low_rate'
+            result['count'] = 2000
 
-
-        original_list = self.address_dict_normalized.get('original_list')
-        result['street'] = key_value_pairs['street']
-        result['ward'] = original_list[index].get('ward_name')
-        result['district'] = original_list[index].get('district_name')
-        result['province'] = original_list[index].get('province_name')
-        result['city_rate'] = ratio
-        result['all_rate'] = rate
         return result
