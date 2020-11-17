@@ -1,60 +1,42 @@
 import re
 from unidecode import unidecode
 
+
 def clean_and_reduce_length(addr: str, biased_group: str, magic_number=13, mid_number=27):
-    if len(addr) > 0 and mid_number > magic_number:
+    if len(addr) > 0:
         if biased_group == 'province':
             addr = clean(addr, is_city=True)
             if len(addr) > magic_number:
                 return addr[-magic_number:]
         elif biased_group == 'district':
             addr = clean(addr, is_district=True)
-            magic_number = mid_number
-            if len(addr) > magic_number:
-                return addr[magic_number-13:magic_number]
+            if len(addr) > mid_number > magic_number:
+                return addr[mid_number - magic_number:mid_number]
         elif biased_group == 'ward':
             addr = clean(addr, is_ward=True)
-            magic_number = mid_number
-            if len(addr) > magic_number:
-                return addr[0:magic_number-13]
+            if len(addr) > mid_number > magic_number:
+                return addr[magic_number:mid_number]
         else:
             addr = clean_all_in_one(addr)
-            magic_number = mid_number
-            if len(addr) > magic_number:
-                return addr[0:magic_number]
-    return addr
-
-def reduce_length_with_biased(addr: str, biased_group: str, magic_number=13, mid_number=27):
-    if len(addr) > 0 and mid_number > magic_number:
-        if biased_group == 'province':
-            if len(addr) > magic_number:
-                return addr[-magic_number:]
-        elif biased_group == 'district':
-            magic_number = mid_number
-            if len(addr) > magic_number:
-                return addr[magic_number-13:magic_number]
-        elif biased_group == 'ward':
-            magic_number = mid_number
-            if len(addr) > magic_number:
-                return addr[0:magic_number-13]
-        else:
-            magic_number = mid_number
-            if len(addr) > magic_number:
-                return addr[0:magic_number]
     return addr
 
 
 def clean_alphanumeric_space(address: str):
     def only_alphanumeric_space(address: str):
         return re.sub(r'[^A-Za-z0-9,\s]', '', address)
+
     def _comma_to_space(address: str):
         return re.sub(',', ' ', address)
+
     try:
         result = unidecode(address)
         result = _comma_to_space(result)
         return only_alphanumeric_space(result).lower()
     except Exception as e:
         print(e)
+        return address
+
+
 def clean_and_split_into_words(addr: str):
     addr = clean_alphanumeric_space(addr)
     words = addr.split(' ')
@@ -148,6 +130,7 @@ def clean(address: str, is_city=False, is_district=False, is_ward=False):
         return only_alphanumeric(result).lower()
     except Exception as e:
         print(e)
+        return address
 
 
 def clean_all_in_one(address: str):
@@ -174,6 +157,7 @@ def clean_all_in_one(address: str):
         return only_alphanumeric(result)
     except Exception as e:
         print(e)
+        return address
 
 
 def clean_all_extra(address: str):
@@ -199,6 +183,7 @@ def clean_all_extra(address: str):
         return only_alphanumeric(result)
     except Exception as e:
         print(e)
+        return address
 
 
 def clean_all_test(address: str):
@@ -212,6 +197,7 @@ def clean_all_test(address: str):
         return only_alphanumeric(result)
     except Exception as e:
         print(e)
+        return address
 
 
 def clean_alphanumeric_delimeter_upper(address: str):
@@ -228,3 +214,4 @@ def clean_alphanumeric_delimeter_upper(address: str):
         return only_alphanumeric(result).upper()
     except Exception as e:
         print(e)
+        return address

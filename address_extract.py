@@ -26,7 +26,7 @@ class AddressExtractor():
         self.hot_words = word_dict.get('hot_words')
 
     def assumption_brute_force_search(self, address: str, rate_province=85, rate_district=85, rate_ward=65,
-                                      order=('street', 'ward', 'district', 'province'), key_value_pairs=None):
+                                      order=('street', 'ward', 'district', 'province'), key_value_pairs=None,extra_rate=65):
         """
         Given a full address as string, try to return 4 part: street, ward, district, province/city
         Givan a list of dictionary, each dictionary is a province/city and all of its districts and wards
@@ -34,6 +34,7 @@ class AddressExtractor():
         If failure in seperate address in to 4 parts, perform 'assumption_search'
         Try to iterate all possible order of ('street', 'ward', 'district', 'province'), prefered the shown order
         After iterating and still fail (cannot satisfy matching rates for each part), try 'assumption_search'
+        :param extra_rate:
         :param key_value_pairs:
         :param address: address as string, expected parts seperated by a comma ','
         :param rate_province: limit to continue district search
@@ -63,7 +64,7 @@ class AddressExtractor():
         no_of_group = len(key_value_pairs.keys())
 
         if 1 <= no_of_group < 4:
-            return self.assumption_search(address, key_value_pairs=key_value_pairs)
+            return self.assumption_search(address, key_value_pairs=key_value_pairs,extra_rate=extra_rate)
         elif no_of_group == 4:
             possibilities = permutations(order, len(order))
             # n!/(n-k)! , k = 4 => 24 permutations
@@ -131,7 +132,7 @@ class AddressExtractor():
                             return result
 
             # Reach this far means not found try another method
-            return self.assumption_search(address, key_value_pairs=key_value_pairs)
+            return self.assumption_search(address, key_value_pairs=key_value_pairs,extra_rate=extra_rate)
         else:
             print("Can handle 1 to 4 groups!")
             return None
@@ -150,12 +151,16 @@ class AddressExtractor():
         :return: a list containing n best matched elements, each one is a object in
         """
         allow_group_names = ('wards', 'districts', 'provinces')
-
         final_result = None
         if group_name not in allow_group_names:
             print('Group names allowed are: {}'.format(str(allow_group_names)))
             return final_result
         normalized_key = group_name + '_normalized'
+
+        allow_biased_group = ('ward','district','province','')
+        if biased_group not in allow_biased_group:
+            print('Group names allowed are: {}'.format(str(allow_biased_group)))
+            return final_result
 
         # Cleaned custom_list before use
         if custom_list is None:
@@ -177,23 +182,36 @@ class AddressExtractor():
             return final_result
 
         # Clean to_look_value before comparing
+        # to_look_value = ''
+        # if group_name == 'provinces':
+        #     # Provide different cleaning ways for provinces
+        #     if biased_group == 'province':
+        #         to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
+        #     elif biased_group == 'district':
+        #         to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
+        #     elif biased_group == 'ward':
+        #         to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
+        #     else:
+        #         to_look_value = clean(search_term_in_address, is_city=True)
+        #
+        # elif group_name == 'districts':
+        #     to_look_value = clean(search_term_in_address, is_district=True)
+        # elif group_name == 'wards':
+        #     to_look_value = clean(search_term_in_address, is_ward=True)
+
         to_look_value = ''
-        if group_name == 'provinces':
-            # Provide different cleaning ways for provinces
-            if biased_group == 'province':
-                to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
-            elif biased_group == 'district':
-                to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
-            elif biased_group == 'ward':
-                to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
-            else:
+
+        # Provide different cleaning ways
+        if len(biased_group) > 0:
+            to_look_value = clean_and_reduce_length(search_term_in_address, biased_group=biased_group)
+        else:
+            if group_name == 'provinces':
                 to_look_value = clean(search_term_in_address, is_city=True)
-
-        elif group_name == 'districts':
-            to_look_value = clean(search_term_in_address, is_district=True)
-        elif group_name == 'wards':
-            to_look_value = clean(search_term_in_address, is_ward=True)
-
+            elif group_name == 'districts':
+                to_look_value = clean(search_term_in_address, is_district=True)
+            elif group_name == 'wards':
+                to_look_value = clean(search_term_in_address, is_ward=True)
+        # print(to_look_value)
         # Compare and return top n matches
         if cleaned_list is not None and len(to_look_value) > 0:
             if 1 <= top_n <= 10:
@@ -247,6 +265,7 @@ class AddressExtractor():
         else:
             province = key_value_pairs.get('province','')
 
+        # print(key_value_pairs.values())
         all_in_one = []
         for k in order:
             value = key_value_pairs.get(k)
@@ -256,7 +275,7 @@ class AddressExtractor():
                     _ = all_in_one.index(value)
                 except:
                     all_in_one.append(value)
-
+        # print(all_in_one)
         no_of_group = len(all_in_one)
 
         if len(province) > 0:
@@ -287,30 +306,38 @@ class AddressExtractor():
 
         # Try 4 times with 4 cleaning ways and pick the best one
         # Only do it for province due to the searching list is short
-        max_ratio = 0
-        max_index = -1
-        potential_provinces = []
-        for i in range(len(order)):
-            group = order[i]
-            province_node = self.group_search(search_term_in_address=province, group_name='provinces',biased_group=group)
-            potential_provinces.append(province_node)
-            if province_node is not None:
-                province_node = province_node[0]
-                ratio = province_node.get('rate')
-                if ratio > max_ratio:
-                    max_index = i
-                    max_ratio = ratio
-            else:
-                return None
-        if max_index >= 0:
-            province_node = potential_provinces[max_index][0]
-        else:
-            return None
+        # This approach give bad result due to the randomness feature of input data
+        # max_ratio = 0
+        # max_index = -1
+        # potential_provinces = []
+        # # print(province)
+        # for i in range(3):
+        #     group = order[1:][i]
+        #     province_node = self.group_search(search_term_in_address=province, group_name='provinces',biased_group=group)
+        #     potential_provinces.append(province_node)
+        #     if province_node is not None:
+        #         province_node = province_node[0]
+        #         ratio = province_node.get('rate')
+        #         if ratio > max_ratio:
+        #             max_index = i
+        #             max_ratio = ratio
+        #     else:
+        #         return None
+        # if max_index >= 0:
+        #     province_node = potential_provinces[max_index][0]
+        # else:
+        #     return None
 
-        # value = province_node.get('value')
+        province_node = self.group_search(search_term_in_address=province, group_name='provinces')
+        province_node = province_node[0]
+
         ratio = province_node.get('rate')
         start = province_node.get('start_index')
         end = province_node.get('end_index')
+
+        # value = province_node.get('value')
+        # print(value)
+        # print(ratio)
         # print(province_node)
         if ratio >= province_rate and start >= 0 and end >= 0:
             match, rate = process.extractOne(all_in_one_cleaned, cleaned_list[start:end])
@@ -353,6 +380,7 @@ class AddressExtractor():
                 if index >= 0:
                     result['type'] = "trick"
                     result['count'] = len(promise_list)
+
             # if word_bag search is not used, check the length first and search in the whole list
             elif len(all_in_one_cleaned) > 3:
                 match, rate = process.extractOne(all_in_one_cleaned, cleaned_list)
