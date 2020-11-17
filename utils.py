@@ -22,32 +22,84 @@ def clean_and_reduce_length(addr: str, biased_group: str, magic_number=13, mid_n
 
 
 def clean_alphanumeric_space(address: str):
-    def only_alphanumeric_space(address: str):
-        return re.sub(r'[^A-Za-z0-9,\s]', '', address)
+    def _only_alphanumeric_space(address: str):
+        return re.sub(r'[^A-Za-z0-9\s]', '', address)
 
-    def _comma_to_space(address: str):
-        return re.sub(',', ' ', address)
+    def _comma_dot_to_space(address: str):
+        return re.sub(r'[,.]', ' ', address)
 
     try:
         result = unidecode(address)
-        result = _comma_to_space(result)
-        return only_alphanumeric_space(result).lower()
+        result = _comma_dot_to_space(result)
+        return _only_alphanumeric_space(result).lower()
+    except Exception as e:
+        print(e)
+        return address
+
+
+def clean_for_word_bag(address: str, is_city=False, is_district=False, is_ward=False):
+    def _only_alphanumeric_space(address: str):
+        return re.sub(r'[^A-Za-z0-9\s]', '', address)
+
+    def _comma_dot_to_space(address: str):
+        return re.sub(r'[,.]', ' ', address)
+
+    def normalized_city(address: str):
+        return re.sub(r'(tp\.)|(tp\s)|(^tinh\s)|(thanh\spho\s)', '', address, flags=re.IGNORECASE)
+
+    def normalized_district(address: str):
+        return re.sub(r'(^huyen\s)|(thanh\spho\s)|(thi\sxa\s)|(tx\.)|(tx\s)|(^quan\s)', '', address,
+                      flags=re.IGNORECASE)
+
+    def normalized_ward(address: str):
+        return re.sub(r'(^xa\s)|(thi\stran\s)|(tt\.)|(tt\s)|(p\.)|([^a-z]+p\s+)|(^phuong\s)', '', address,
+                      flags=re.IGNORECASE)
+
+    try:
+        result = unidecode(address)
+        result = _comma_dot_to_space(result)
+        result = remove_leading_zero_for_one_digit_number(result)
+        if is_city:
+            result = normalized_city(result)
+        elif is_district:
+            result = normalized_district(result)
+        elif is_ward:
+            result = normalized_ward(result)
+        return _only_alphanumeric_space(result).lower()
     except Exception as e:
         print(e)
         return address
 
 
 def clean_and_split_into_words(addr: str):
-    addr = clean_alphanumeric_space(addr)
-    words = addr.split(' ')
-    for i in range(len(words)):
-        value = words[i].strip()
-    if len(value) > 0:
-        words[i] = value
-    else:
-        words[i] = None
-    # Remove None
-    result = [e for e in words if e]
+    result = []
+    if len(addr) > 0:
+        addr = clean_alphanumeric_space(addr)
+        words = addr.split(' ')
+        for i in range(len(words)):
+            value = words[i].strip()
+            if len(value) > 0:
+                words[i] = value
+            else:
+                words[i] = None
+        # Remove None
+        result = [e for e in words if e]
+    return result
+
+
+def clean_and_split_into_words_for_word_bag(addr: str, is_city=False, is_district=False, is_ward=False):
+    result = []
+    if len(addr) > 0:
+        addr = clean_for_word_bag(addr, is_city, is_district, is_ward)
+        words = addr.split(' ')
+        for i in range(len(words)):
+            value = words[i].strip()
+            if len(value) > 0:
+                words[i] = value
+            else:
+                words[i] = None
+        # Remove None
+        result = [e for e in words if e]
     return result
 
 
@@ -171,7 +223,7 @@ def clean_all_extra(address: str):
 
     def normalized_ward(address: str):
         return re.sub(
-            r'(,xa\s)|(thi\stran\s)|(tt\.)|(tt\s)|(,phuong\s)|(p\.)|([^a-z]+p\s+)||(phuong\s)|(thon\s)|(xom\s)|(khom\s)|(xa\s)||(to\s)||(ap\s)',
+            r'(,xa\s)|(thi\stran\s)|(tt\.)|(tt\s)|(,phuong\s)|(p\.)|([^a-z]+p\s+)||(phuong\s)|(thon\s)|(xom\s)|(khom\s)|(xa\s)|(to\s)|(ap\s)',
             '', address)
 
     try:
