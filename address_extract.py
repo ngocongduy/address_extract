@@ -1,5 +1,5 @@
 from itertools import permutations
-from fuzzywuzzy import process
+from fuzzywuzzy import process, fuzz
 from .utils import *
 
 from .load_data import load_address_dict, load_cities_data_normalized, load_address_dict_normalized, load_word_bag, \
@@ -1002,7 +1002,7 @@ class AddressExtractorNew():
         word_dict = load_word_dict()
         self.bag_of_words = word_dict.get('bag_of_words')
 
-    def __find_and_rearrange_address_part(self, part_as_string: str, words_in_address: list):
+    def __find_and_rearrange_address_part(self, part_as_string: str, words_in_address):
         if type(words_in_address) is list:
             address = ' '.join(words_in_address)
             address = clean_all_extra(address)
@@ -1022,12 +1022,12 @@ class AddressExtractorNew():
         if index == 0:
             # Mean the province is at the end
             reduced_address = reversed_address.replace(reversed_province, '', 1)[::-1]
-            return address, reduced_address
+            return address, reduced_address, part_as_string
         elif index > 0:
             # Return a new rearranged string
             reduced_address = reversed_address.replace(reversed_province, '', 1)[::-1]
             new_address = reduced_address + part_as_string
-            return new_address, reduced_address
+            return new_address, reduced_address, part_as_string
         else:
             return None
 
@@ -1042,9 +1042,14 @@ class AddressExtractorNew():
                 part_words = self.district_words
             elif address_part == 'wards':
                 part_words = self.ward_words
-            if w in part_words:
-                is_contained = True
-                break
+            # if w in part_words:
+            #     is_contained = True
+            #     break
+            for w_ in part_words:
+                ratio = fuzz.partial_ratio(w,w_)
+                if ratio >= 95:
+                    is_contained = True
+                    break
         if not is_contained:
             return None
         else:
@@ -1066,7 +1071,7 @@ class AddressExtractorNew():
                     else:
                         string = ''.join(string)
                         if len(address_as_string) > 0:
-                            new_addresses = self.__find_and_reduce_address_part(string, address_as_string)
+                            new_addresses = self.__find_and_rearrange_address_part(string, address_as_string)
                         else:
                             new_addresses = self.__find_and_rearrange_address_part(string, address_words)
                         if new_addresses is None:
@@ -1076,6 +1081,30 @@ class AddressExtractorNew():
                             end_index = e.get('end_index')
                             potentials.append((new_addresses, (start_index, end_index)))
         return potentials
+
+    def __find_matched_result(self, address ,to_look_list, match, ratio, original_list, start_index):
+        index_short_list = -1
+        try:
+            index_short_list = to_look_list.index(match)
+        except:
+            pass
+        result = {}
+        if index_short_list >= 0:
+            real_index = index_short_list + start_index
+            result['all_rate'] = ratio
+            result['province'] = original_list[real_index].get('province_name')
+            result['district'] = original_list[real_index].get('district_name')
+            result['ward'] = original_list[real_index].get('ward_name')
+            result['street'] = address
+            result['type'] = 'all_in_one'
+        else:
+            result['all_rate'] = ratio
+            result['province'] = ""
+            result['district'] = ""
+            result['ward'] = ""
+            result['street'] = address
+            result['type'] = 'error'
+        return result
 
     def word_dict_search(self, address: str, all_rate=60):
         address_words = clean_and_split_into_words(address)
@@ -1090,10 +1119,15 @@ class AddressExtractorNew():
 
         fall_back_result = {'all_rate': 0, 'province': "", 'district': "", 'ward': "", 'street': address,
                             'type': 'error'}
-        max_index = -1
-        max_rate = 0
-        visted_provinces = []
+        removed_parts = {}
+        if potential_provinces is None:
+            return fall_back_result
+        # print(potential_provinces)
+        extra_search = []
         for i in range(len(potential_provinces)):
+            #
+            removed_parts[i] = []
+
             # For each potential province, find some matches
             potential_province = potential_provinces[i]
             cleaned_address = potential_province[0][0]
@@ -1106,7 +1140,10 @@ class AddressExtractorNew():
             # print(end_index)
             # print(matches)
             chosen_match = None
-            hopes = []
+
+            removed_province = potential_province[0][2]
+            removed_parts[i].append(removed_province)
+
             for j in range(len(matches)):
                 # For each province matched, we jump in it's districts
                 matching = matches[j]
@@ -1124,95 +1161,74 @@ class AddressExtractorNew():
                     if province_.get('code') == province_code:
                         province_node = province_
                         break
-                # Marked the province we visted
-                if j == 0:
-                    visted_provinces.append(province_code)
-                else:
-                    try:
-                        _ = visted_provinces.index(province_code)
-                        break
-                    except:
-                        visted_provinces.append(province_code)
-                        pass
 
                 districts_ = province_node.get('districts')
-
+                ward_node = None
                 # For each district in the province node
                 for d in districts_:
-                    districts_name = d.get('short_codename')
-                    districts_name = districts_name.replace('_', '')
-                    # reduced address is a string with provide words removed
-                    temp_result = self.__find_and_rearrange_address_part(districts_name, reduced_address)
-                    if temp_result is not None:
-                        # If we can find and remove district words in the address: do the same logic for ward
-                        reduced_address_2 = temp_result[1]
-                        wards_ = d.get('wards')
-                        # If found a district wich address_string contained
-                        # Loop throuh each ward to find a ward
-                        for w in wards_:
-                            ward_name = w.get('short_codename')
-                            ward_name = ward_name.replace('_', '')
-                            ward_result = self.__find_and_rearrange_address_part(ward_name, reduced_address_2)
-                            if ward_result is not None:
-                                # Happy case we found
-                                street = ward_result[1]
-                                hopes.append((j, street))
-            # Among possible match found (contains all province, district and ward), we try to get the best one
-            # Because we loop through a ascending list of matching province, then the first found will be the highest matched
-            # print(hopes)
-            max_matching_rate = 0
-            max_matching_index= - 1
-            street_value = ''
-            if len(hopes) > 0:
-                # for k in range(len(hopes)):
-                #     hope = hopes[k]
-                #     hopful_index = hope[0]
-                #     hopful_matching_value = matches[hopful_index][1]
-                #     if hopful_matching_value > max_matching_rate:
-                #         max_matching_rate = hopful_matching_value
-                #         max_matching_index = k
-                #         street_value = hope[1]
-
-                max_matching_index = hopes[0][0]
-                street_value = hopes[0][1]
-            # If we can find the best matched, use it, else, use the first match (with highest matching rate)
-            # print(hopes)
-            # print(matches)
-            low_rate = 0
-            if max_matching_index >= 0:
-                chosen_match = matches[max_matching_index]
-            else:
-                if len(matches) > 0:
-                    if matches[0][1] >= all_rate:
-                        chosen_match = matches[0]
+                    district_name = d.get('short_codename')
+                    check_number_district = district_name.split('_')
+                    if check_number_district[-1][0] in ('0','1','2','3','4','5','6','7','8','9'):
+                        district_name = check_number_district[-1].lstrip('0')
+                        # print(district_name)
                     else:
-                        low_rate = matches[0][1]
+                        district_name = district_name.replace('_', '')
+                    # reduced address is a string with provide words removed
+                    district_result = self.__find_and_rearrange_address_part(district_name, reduced_address)
+                    if district_result is not None:
+                        ward_node = d.get('wards')
+                        reduced_address_2 = district_result[1]
+                        removed_district = district_result[2]
+                        removed_parts[i].append(removed_district)
+                        break
+
+                if ward_node is not None:
+                    # Loop throuh each ward to find a ward
+                    for w in ward_node:
+                        ward_name = w.get('short_codename')
+                        check_number_ward = ward_name.split('_')
+                        if check_number_ward[-1][0] in ('0','1','2','3','4','5','6','7','8','9'):
+                            ward_name = check_number_ward[-1].lstrip('0')
+                            # print(ward_name)
+                        else:
+                            ward_name = ward_name.replace('_', '')
+                        ward_result = self.__find_and_rearrange_address_part(ward_name, reduced_address_2)
+                        if ward_result is not None:
+                            # Happy case we found
+                            street = ward_result[1]
+                            removed_ward = ward_result[2]
+                            removed_parts[i].append(removed_ward)
+                            removed_parts[i].append(street)
+                            # hopes.append((j, street))
+                            break
+                    break
+
+            # print(removed_parts)
+            low_rate = 0
+            # Make decision for each potential province
+            # print("Potential province {}".format(i))
+            if len(removed_parts[i]) == 4:
+                # Prepare material for extra search
+                pro_dis_ward = removed_parts[i][0:-1]
+                perfect_address = ''.join(reversed(pro_dis_ward))
+                material = {}
+                material['start_index'] = start_index
+                material['end_index'] = end_index
+                material['perfect_address'] = perfect_address
+                # print(material)
+                extra_search.append(material)
+
+            if len(matches) > 0:
+                if matches[0][1] >= all_rate:
+                    chosen_match = matches[0]
+                else:
+                    low_rate = matches[0][1]
             # print(all_rate)
             # print(chosen_match)
             if chosen_match is not None:
                 match = chosen_match[0]
                 ratio = chosen_match[1]
-                index_short_list = -1
-                try:
-                    index_short_list = to_look_list.index(match)
-                except:
-                    pass
-                result = {}
-                if index_short_list >= 0:
-                    real_index = index_short_list + start_index
-                    result['all_rate'] = ratio
-                    result['province'] = original_list[real_index].get('province_name')
-                    result['district'] = original_list[real_index].get('district_name')
-                    result['ward'] = original_list[real_index].get('ward_name')
-                    result['street'] = street_value if len(street_value) > 0 else address
-                    result['type'] = 'all_in_one'
-                else:
-                    result['all_rate'] = ratio
-                    result['province'] = ""
-                    result['district'] = ""
-                    result['ward'] = ""
-                    result['street'] = address
-                    result['type'] = 'error'
+                result = self.__find_matched_result(address,to_look_list,match,ratio, original_list, start_index)
                 result_list.append(result)
             else:
                 # If low rate detected
@@ -1225,18 +1241,39 @@ class AddressExtractorNew():
                 else:
                     result_list.append(fall_back_result)
 
-        # Each province will give us a best match
-        # Naively pick the 1st found with highes all_rate_
-        # print(result_list)
-        for k in range(len(result_list)):
-            # print(result_list[k])
-            all_rate_ = result_list[k].get('all_rate')
-            if all_rate_ > max_rate:
-                max_rate = all_rate_
-                max_index = k
+        max_index = -1
+        max_rate = 0
+        # print(extra_search)
+        # Do extra search:
+        if len(extra_search) > 0:
+            hopeful_list = []
+            for combo in extra_search:
+                # print(combo)
+                start = combo.get('start_index')
+                end = combo.get('end_index')
+                perfect_address = combo.get('perfect_address')
+                # print(start)
+                # print(end)
+                to_look_list = cleaned_list_extra[start:end + 1]
+                # print(to_look_list)
+                hopeful_match, hopeful_ratio = process.extractOne(perfect_address,to_look_list)
+                hopeful_result = self.__find_matched_result(address,to_look_list,hopeful_match,hopeful_ratio,original_list,start)
+                hopeful_list.append(hopeful_result)
+            # print(hopeful_list)
+            if len(hopeful_list) > 0:
+                return hopeful_list[0]
+        else:
+            for k in range(len(result_list)):
+                # print(result_list[k])
+                all_rate_ = result_list[k].get('all_rate')
+                if all_rate_ > max_rate:
+                    max_rate = all_rate_
+                    max_index = k
         if max_index >= 0:
+            # print(result_list[max_index])
             return result_list[max_index]
         else:
+            # print(fall_back_result)
             return fall_back_result
 
     def assumption_brute_force_search_word_dict(self, address: str, rate_province=85, rate_district=85, rate_ward=65,
@@ -1266,7 +1303,7 @@ class AddressExtractorNew():
             possibilities = permutations(order, len(order))
             # n!/(n-k)! , k = 4 => 24 permutations
             for order_pos in possibilities:
-                all_rate = 0
+                all_rate_ = 0
                 # per_index+=1
                 # Prepare material for each possibilities
                 key_value_pairs_brute = extract_group(address, order_pos)
@@ -1295,7 +1332,7 @@ class AddressExtractorNew():
                         p_i = cleaned_province_list.index(p_match)
                         district_node = self.nested_address_dict_normalized[p_i].get('districts')
                         result['province'] = self.nested_address_dict_normalized[p_i].get('name')
-                        all_rate += p_rate
+                        all_rate_ += p_rate
                         continue
                     elif group == 'districts':
                         if district_node is None:
@@ -1313,7 +1350,7 @@ class AddressExtractorNew():
                             d_i = cleaned_district_list.index(d_match)
                             wards = district_node[d_i].get('wards')
                             result['district'] = district_node[d_i].get('name')
-                            all_rate += d_rate
+                            all_rate_ += d_rate
                             continue
                     else:
                         if wards is None:
@@ -1331,8 +1368,8 @@ class AddressExtractorNew():
                             ward = wards[w_i]
                             result['ward'] = ward.get('name')
                             result['street'] = key_value_pairs_brute['street']
-                            all_rate += w_rate
-                            result['all_rate'] = all_rate / 3
+                            all_rate_ += w_rate
+                            result['all_rate'] = all_rate_ / 3
                             return result
 
             # Reach this far means not found try another method
