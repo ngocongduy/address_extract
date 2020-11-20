@@ -1187,8 +1187,8 @@ class AddressExtractorNew():
                         chosen_match = matches[0]
                     else:
                         low_rate = matches[0][1]
-            print(all_rate)
-            print(chosen_match)
+            # print(all_rate)
+            # print(chosen_match)
             if chosen_match is not None:
                 match = chosen_match[0]
                 ratio = chosen_match[1]
@@ -1227,7 +1227,7 @@ class AddressExtractorNew():
 
         # Each province will give us a best match
         # Naively pick the 1st found with highes all_rate_
-        print(result_list)
+        # print(result_list)
         for k in range(len(result_list)):
             # print(result_list[k])
             all_rate_ = result_list[k].get('all_rate')
