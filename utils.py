@@ -2,6 +2,25 @@ import re
 from unidecode import unidecode
 
 
+def check_allowed_number(w: str):
+    if w.isnumeric():
+        # print("Numeric: {}".format(w))
+        if int(w) in range(30):
+            return True
+        else:
+            return False
+    else:
+        return True
+    # elif w.isalnum():
+    #     # print("Alnum: {}".format(w))
+    #     return True
+    # else:
+    #     # print("Not contain any number")
+    #     return None
+
+
+
+
 def clean_and_reduce_length(addr: str, biased_group: str, magic_number=13, mid_number=27):
     if len(addr) > 0:
         if biased_group == 'province':
@@ -84,7 +103,11 @@ def clean_and_split_into_words(addr: str):
         #         words[i] = None
         # # Remove None
         # result = [e for e in words if e]
-        result = addr.split()
+        words = addr.split()
+        result = []
+        for w in words:
+            if check_allowed_number(w):
+                result.append(w)
     return result
 
 
@@ -221,12 +244,12 @@ def clean_all_extra(address: str):
 
     def normalized_city_district(address: str):
         return re.sub(
-            r'(tp\.)|(tp\s)|(,tinh\s)|(,huyen\s)|(thanh\spho\s)|(thi\sxa\s)|(tx\.)|(tx\s)|(,quan\s)|(tinh\s)|(huyen\s)|(quan\s)' \
+            r'(tp\.)|(tp\s)|(,tinh\s)|(,huyen\s)|(thanh\spho\s)|(thi\sxa\s)|(tx\.)|(tx\s)|(,quan\s)|([^a-z]+tinh\s)|([^a-z]+huyen\s)|([^a-z]+quan\s)' \
             , '', address)
 
     def normalized_ward(address: str):
         return re.sub(
-            r'(,xa\s)|(thi\stran\s)|(tt\.)|(tt\s)|(,phuong\s)|(p\.)|([^a-z]+p\s+)||(phuong\s)|(thon\s)|(xom\s)|(khom\s)|(xa\s)|(to\s)|(ap\s)',
+            r'(,xa\s)|(thi\stran\s)|(tt\.)|(tt\s)|(,phuong\s)|(p\.)|([^a-z]+p\s+)||([^a-z]+phuong\s)|([^a-z]+thon\s)|([^a-z]+xom\s)|([^a-z]+khom\s)|([^a-z]+xa\s)|([^a-z]+to\s)|([^a-z]+ap\s)',
             '', address)
 
     try:
