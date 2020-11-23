@@ -75,15 +75,16 @@ def clean_and_split_into_words(addr: str):
     result = []
     if len(addr) > 0:
         addr = clean_alphanumeric_space(addr)
-        words = addr.split(' ')
-        for i in range(len(words)):
-            value = words[i].strip()
-            if len(value) > 0:
-                words[i] = value
-            else:
-                words[i] = None
-        # Remove None
-        result = [e for e in words if e]
+        # words = addr.split(' ')
+        # for i in range(len(words)):
+        #     value = words[i].strip()
+        #     if len(value) > 0:
+        #         words[i] = value
+        #     else:
+        #         words[i] = None
+        # # Remove None
+        # result = [e for e in words if e]
+        result = addr.split()
     return result
 
 
@@ -91,15 +92,16 @@ def clean_and_split_into_words_for_word_bag(addr: str, is_city=False, is_distric
     result = []
     if len(addr) > 0:
         addr = clean_for_word_bag(addr, is_city, is_district, is_ward)
-        words = addr.split(' ')
-        for i in range(len(words)):
-            value = words[i].strip()
-            if len(value) > 0:
-                words[i] = value
-            else:
-                words[i] = None
-        # Remove None
-        result = [e for e in words if e]
+        # words = addr.split(' ')
+        # for i in range(len(words)):
+        #     value = words[i].strip()
+        #     if len(value) > 0:
+        #         words[i] = value
+        #     else:
+        #         words[i] = None
+        # # Remove None
+        # result = [e for e in words if e]
+        result = addr.split()
     return result
 
 
@@ -143,7 +145,8 @@ def add_zero_for_one_digit_number(num_as_string: str):
 
 
 def remove_leading_zero_for_one_digit_number(num_as_string: str):
-    splits = num_as_string.split(' ')
+    # splits = num_as_string.split(' ')
+    splits = num_as_string.split()
     # print(splits)
     if len(splits) > 0:
         clean_list = [i.lstrip('0') for i in splits]

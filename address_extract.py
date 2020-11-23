@@ -28,8 +28,10 @@ class AddressExtractor():
         self.ward_words = word_bag.get('ward_words')
         self.district_words = word_bag.get('district_words')
         self.province_words = word_bag.get('province_words')
-        word_dict = load_word_dict()
-        self.bag_of_words = word_dict.get('bag_of_words')
+
+        # To be removed
+        # word_dict = load_word_dict()
+        # self.bag_of_words = word_dict.get('bag_of_words')
 
     def assumption_brute_force_search(self, address: str, rate_province=85, rate_district=85, rate_ward=65,
                                       order=('street', 'ward', 'district', 'province'), key_value_pairs=None,
@@ -772,6 +774,7 @@ class AddressExtractor():
             print("Can handle 1 to 4 groups!")
             return None
 
+    """
     ##### New method with bag of words approach
     def __count_word_in_address(self, allow_words: list):
         words = set(allow_words)
@@ -900,36 +903,7 @@ class AddressExtractor():
         result = {}
         for k in order:
             result[k] = ''
-        """
-        key_value_pairs = extract_group(address, order)
-        all_in_one = []
-        for k in order:
-            value = key_value_pairs.get(k)
-            # In case key_value_pairs values are all the same
-            if value is not None:
-                try:
-                    _ = all_in_one.index(value)
-                except:
-                    all_in_one.append(value)
-        # print(all_in_one)
-        no_of_group = len(all_in_one)
-
-        if no_of_group == 1:
-            all_in_one_cleaned = clean_all_in_one(all_in_one[0])
-            all_in_one_extra_cleaned = clean_all_extra(all_in_one[0])
-        else:
-            # Join by commas to work with cleaning functions
-            all_in_one_cleaned = clean_all_in_one(','.join(all_in_one))
-            all_in_one_extra_cleaned = clean_all_extra(','.join(all_in_one))
-
-        all_in_one_cleaned = self.__reduce_length_with_magic_number(all_in_one_cleaned)
-        all_in_one_extra_cleaned = self.__reduce_length_with_magic_number(all_in_one_extra_cleaned)
-
-
-
-        cleaned_list = self.address_dict_normalized.get('cleaned_list')
-        cleaned_list = [cleaned_list[i] for i in prefered_indexes]
-        """
+       
         joined_allowed_words = ''.join(allowed_words)
         joined_allowed_words = self.__reduce_length_with_magic_number(joined_allowed_words)
 
@@ -981,7 +955,7 @@ class AddressExtractor():
             result['count'] = 2000
 
         return result
-
+    """
 
 class AddressExtractorNew():
     def __init__(self, cities_data_normalized=None, address_dict_normalized=None, nested_address_dict_normalized=None):
@@ -999,8 +973,6 @@ class AddressExtractorNew():
         self.ward_words = word_bag.get('ward_words')
         self.district_words = word_bag.get('district_words')
         self.province_words = word_bag.get('province_words')
-        word_dict = load_word_dict()
-        self.bag_of_words = word_dict.get('bag_of_words')
 
     def __find_and_rearrange_address_part(self, part_as_string: str, words_in_address):
         if type(words_in_address) is list:
@@ -1013,19 +985,19 @@ class AddressExtractorNew():
             return None
         index = -1
         reversed_address = address[::-1]
-        reversed_province = part_as_string[::-1]
+        reversed_part = part_as_string[::-1]
         try:
             # Find with reversed positions
-            index = reversed_address.index(reversed_province)
+            index = reversed_address.index(reversed_part)
         except:
             pass
         if index == 0:
             # Mean the province is at the end
-            reduced_address = reversed_address.replace(reversed_province, '', 1)[::-1]
+            reduced_address = reversed_address.replace(reversed_part, '', 1)[::-1]
             return address, reduced_address, part_as_string
         elif index > 0:
             # Return a new rearranged string
-            reduced_address = reversed_address.replace(reversed_province, '', 1)[::-1]
+            reduced_address = reversed_address.replace(reversed_part, '', 1)[::-1]
             new_address = reduced_address + part_as_string
             return new_address, reduced_address, part_as_string
         else:
