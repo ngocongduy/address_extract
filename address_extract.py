@@ -1327,7 +1327,10 @@ class AddressExtractorNew():
                         reduced_address_2 = district_result[1]
                         removed_district = district_result[2]
                         # removed_parts[i].append(removed_district)
-                        potential_combination.append(removed_district)
+                        try:
+                            potential_combination[1] = removed_district
+                        except:
+                            potential_combination.append(removed_district)
 
                         if ward_node is not None:
                             # Loop through each ward to find a ward
@@ -1346,10 +1349,22 @@ class AddressExtractorNew():
                                     removed_ward = ward_result[2]
                                     # removed_parts[i].append(removed_ward)
                                     # removed_parts[i].append(street)
-                                    potential_combination.append(removed_ward)
-                                    potential_combination.append(street)
+                                    try:
+                                        potential_combination[2]= removed_ward
+                                    except:
+                                        potential_combination.append(removed_ward)
+                                    try:
+                                        potential_combination[3] = street
+                                    except:
+                                        potential_combination.append(street)
                                     # If we can find all perfect province, district and ward, we will pick this case
-                                    removed_parts[i].append(potential_combination)
+                                    removed_parts[i].append(potential_combination.copy())
+                                # else:
+                                #     break
+                    #     else:
+                    #         break
+                    # else:
+                    #     break
 
                     ############
                     # One provice, we do only one brute search to find all potential_combination
@@ -1415,7 +1430,20 @@ class AddressExtractorNew():
                 # print(end)
                 to_look_list = cleaned_list_extra[start:end + 1]
                 # print(to_look_list)
-                hopeful_match, hopeful_ratio = process.extractOne(perfect_address,to_look_list)
+                # hopeful_match, hopeful_ratio = process.extractOne(perfect_address,to_look_list)
+
+                # Still fuzzy due to elements of to_look_list contains id number at the end
+                top_matches = process.extractBests(perfect_address,to_look_list,limit=20)
+
+                # Make a new list without id number and find the best match
+                top_matches_list = [ele[0].split('_')[0] for ele in top_matches]
+                final, final_ratio = process.extractOne(perfect_address, top_matches_list)
+
+                # Refer back to top_matches
+                fake_index = top_matches_list.index(final)
+                hopeful_match = top_matches[fake_index][0]
+                hopeful_ratio = top_matches[fake_index][1]
+
                 hopeful_result = self.__find_matched_result(address,to_look_list,hopeful_match,hopeful_ratio,original_list,start)
                 hopeful_list.append(hopeful_result)
 
@@ -1430,7 +1458,7 @@ class AddressExtractorNew():
                 # Modified address only has province part move to the end of string
                 for i in range(len(hopeful_perfect_address)):
                     pa, ma = hopeful_perfect_address[i]
-                    checked_ratio = fuzz.ratio(pa,ma)
+                    checked_ratio = fuzz.partial_ratio(pa,ma)
                     if checked_ratio > hopeful_max_rate:
                         hopeful_max_rate = checked_ratio
                         hopeful_max_index = i
