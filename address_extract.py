@@ -937,6 +937,7 @@ class AddressExtractorNew():
 
             # Still want to use pick-first approach if potential province idea fails
             low_rate = 0
+            chosen_match = None
             if len(matches) > 0:
                 if matches[0][1] >= all_rate:
                     chosen_match = matches[0]
